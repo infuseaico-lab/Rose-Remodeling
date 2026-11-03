@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, services, steps, projects, reviews, faqs } from '../data/site';
+const tel = `tel:${site.phoneTel}`;
+const year = new Date().getFullYear();
+---
+<Base
+  title="Kitchen & Bath Remodeling in Sunnyvale | Rose Remodeling & Design"
+  description="Licensed Bay Area design-build remodeler for kitchens, bathrooms, ADUs, additions and whole homes. Free in-home consultation. Call (510) 402-7165."
+>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <span>Now booking free in-home consultations across the Bay Area</span>
+    <a href={tel}>Call {site.phoneDisplay}</a>
+  </div>
+
+  <header class="wrap header">
+    <a href="/" class="brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#F6E9E6"/><path d="M12 24c0-5 4-9 8-9s8 4 8 9M20 15v-4M16 13l4-3 4 3" fill="none" stroke="#1F5C4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Rose Remodeling <span>&amp; Design</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Projects</a>
+      <a href="#process">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#estimate" class="btn btn-dark">Get a free estimate</a>
+  </header>
+
+  <main id="main">
+    <section class="wrap" style="padding-block: 16px 72px">
+      <div class="grid hero">
+        <div class="stack" style="--gap: 22px">
+          <span class="pill">★ Top 3 remodeler in Sunnyvale · 2025</span>
+          <h1>Remodeling without the stress.</h1>
+          <p class="lede">Your neighbors in Sunnyvale and the Bay Area for kitchens, baths, additions and ADUs. One team designs it, permits it and builds it.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a href="#estimate" class="btn btn-green">Book a free consultation</a>
+            <a href="#work" class="btn btn-white">View projects</a>
+          </div>
+          <ul class="checks">
+            <li>Licensed, insured &amp; bonded</li>
+            <li>Dedicated project manager</li>
+            <li>Permits handled</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <!-- TODO: replace with a real project photo via astro:assets <Image> (WebP, sized). -->
+          <div class="photo tone-green" style="height: 380px" role="img" aria-label="Bright finished kitchen remodel">Photo: bright finished kitchen</div>
+          <div class="rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span><strong style="color: var(--ink)">Rated Excellent</strong> on Google · {site.rating.count} reviews</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="wrap stack" style="--gap: 36px; padding-bottom: 88px">
+      <div class="stack" style="--gap: 8px; max-width: 40rem">
+        <h2>What can we help you with?</h2>
+        <p class="muted">Kitchens, baths, additions, ADUs and new construction, designed and built by one team.</p>
+      </div>
+      <div class="grid" style="--min: 260px">
+        {services.map((s) => (
+          <a href="#estimate" class="card">
+            <div class={`photo tone-${s.tone}`} role="img" aria-label={`${s.name} remodeling example`}></div>
+            <h3>{s.name}</h3>
+            <span class="muted" style="font-size: 15px">{s.blurb}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="process" class="night section">
+      <div class="wrap stack" style="--gap: 40px">
+        <h2>How it works</h2>
+        <ol class="grid steps">
+          {steps.map((s, i) => (
+            <li><span class="num" aria-hidden="true">{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="work" class="wrap section stack" style="--gap: 36px">
+      <h2>Before &amp; after</h2>
+      <div class="grid" style="--min: 340px; --gap: 20px">
+        {projects.map((p) => (
+          <figure>
+            <div class="ba">
+              <div class="photo before" role="img" aria-label={`${p.title} before`}>Before</div>
+              <div class={`photo tone-${p.after}`} role="img" aria-label={`${p.title} after`}>After</div>
+            </div>
+            <figcaption><strong>{p.title}</strong><span>{p.place}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section id="reviews" class="blush-bg section">
+      <div class="wrap stack" style="--gap: 32px">
+        <h2>Homeowners love working with Adir &amp; the crew</h2>
+        <div class="grid">
+          {reviews.map((r) => (
+            <blockquote>
+              <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+              <p>“{r.quote}”</p>
+              <footer>{r.who} · {r.job}</footer>
+            </blockquote>
+          ))}
+        </div>
+        <p class="muted">Rated Excellent from {site.rating.count} Google reviews, and 100+ reviews across Google and HomeAdvisor.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="wrap faq section stack" style="--gap: 24px">
+      <h2>Questions, answered</h2>
+      <div>
+        {faqs.map((f) => (
+          <details><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </section>
+
+    <section id="estimate" class="wrap" style="padding-bottom: 88px">
+      <div class="grid cta">
+        <div class="stack" style="--gap: 14px">
+          <h2>Ready to fall back in love with your home?</h2>
+          <p>Free consultation · Detailed proposal · No pressure</p>
+          <p>Prefer to talk? <a href={tel} style="color: #fff; font-weight: 700">{site.phoneDisplay}</a></p>
+        </div>
+        <form id="estimate-form" method="post" action={site.formAction || undefined} data-email={site.email}>
+          <label>Your name<input type="text" name="name" autocomplete="name" required /></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" required /></label>
+          <label>ZIP code<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" /></label>
+          <label>Project
+            <select name="project">
+              {services.map((s) => <option>{s.name}</option>)}
+            </select>
+          </label>
+          <button type="submit" class="btn btn-dark">Get my free estimate</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span><strong>{site.legalName}</strong> · {site.license} · Licensed, insured &amp; bonded</span>
+      <span><a href={tel}>{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`}>{site.email}</a> · © {year}</span>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a href={tel} class="btn btn-white">Call now</a>
+    <a href="#estimate" class="btn btn-green">Free estimate</a>
+  </div>
+
+  <script>
+    // No form endpoint configured: hand the request to the visitor's email app.
+    const form = document.getElementById('estimate-form') as HTMLFormElement | null;
+    if (form && !form.getAttribute('action')) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const d = new FormData(form);
+        const body = ['name', 'phone', 'zip', 'project'].map((k) => `${k}: ${d.get(k) ?? ''}`).join('\n');
+        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Free estimate request')}&body=${encodeURIComponent(body)}`;
+      });
+    }
+  </script>
+</Base>
