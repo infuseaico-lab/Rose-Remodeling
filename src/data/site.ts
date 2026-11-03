@@ -18,24 +18,24 @@ export const site = {
 };
 
 export const services = [
-  { name: 'Kitchens', blurb: 'Layouts that make sense for your family.', tone: 'green' },
-  { name: 'Bathrooms', blurb: 'From refresh to spa-like primary bath.', tone: 'blush' },
-  { name: 'Whole home', blurb: 'Open up and modernize every room.', tone: 'green' },
-  { name: 'ADUs', blurb: 'Backyard units, permits included.', tone: 'blush' },
-  { name: 'Additions', blurb: 'More room that feels original.', tone: 'green' },
-  { name: 'New homes', blurb: 'Ground-up construction.', tone: 'blush' },
+  { name: 'Kitchen Remodeling', icon: 'cabinet', blurb: 'Layouts that work for how your family cooks and gathers, with custom cabinets, stone counters and better light.', bullets: ['Island, L-shaped and galley layouts', 'Cabinets, counters and appliances', 'Plumbing, electrical and permits'] },
+  { name: 'Bathroom Remodeling', icon: 'bath', blurb: 'From a quick refresh to a spa-like primary bath, waterproofed and vented to code before the first tile.', bullets: ['Walk-in and curbless showers', 'Vanities, tile and fixtures', 'Waterproofing and ventilation'] },
+  { name: 'Full Home Remodeling', icon: 'roller', blurb: 'Open up and modernize every room on one schedule, with one project manager.', bullets: ['Open floor plans', 'Electrical, plumbing and HVAC', 'Floors, windows and finishes'] },
+  { name: 'ADU Construction', icon: 'house', blurb: 'Backyard units and garage conversions for family or rental income, permits included.', bullets: ['Detached and attached ADUs', 'Garage conversions', 'Plans, permits and utilities'] },
+  { name: 'Room Additions', icon: 'house-plus', blurb: 'More space that looks like it was always part of the house.', bullets: ['Ground-floor and second-story', 'Foundations, framing and roofing', 'Structural engineering'] },
+  { name: 'New Home Construction', icon: 'layers', blurb: 'Ground-up homes, designed, permitted and built by one team.', bullets: ['Design and 3D renderings', 'Permits and inspections', 'Full construction management'] },
 ];
 
 export const steps = [
-  { title: 'Free consultation', text: 'We visit, listen and send a clear written proposal.' },
-  { title: 'Design & permits', text: 'See it in 3D, choose materials, and we get city approvals.' },
-  { title: 'Build & move in', text: 'Tidy crews, daily updates, finished on schedule.' },
+  { title: 'Consult & Strategize', text: 'We visit, measure, listen to what you want and send a clear written proposal.' },
+  { title: 'Design & Curate', text: 'See it in 3D renderings, choose materials, and we handle the permits.' },
+  { title: 'Build & Manage', text: 'A clean job site, daily updates from your project manager, finished on schedule.' },
 ];
 
 export const projects = [
-  { title: 'Two-bathroom remodel', place: 'Burlingame, CA', after: 'green' },
-  { title: 'Closet & bathroom', place: 'Newark, CA', after: 'blush' },
-  { title: 'Glass & front doors', place: 'Pleasanton, CA', after: 'green' },
+  { title: 'Two-bathroom remodel', place: 'Burlingame' },
+  { title: 'Closet & bathroom', place: 'Newark' },
+  { title: 'Glass & front doors', place: 'Pleasanton' },
 ];
 
 export const reviews = [
