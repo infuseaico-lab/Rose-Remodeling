@@ -1,10 +1,10 @@
 // Photo galleries. Each gallery gets its own page at /portfolio/photo-galleries/<slug>/.
 // To add photos: drop WebP files in public/img/portfolio/<slug>/ and list them in `photos`.
-// The covers below were cropped from the current site and are low resolution: replace them with the originals.
+// Covers: the current site's gallery tiles, AI-upscaled (OpenAI gpt-image-2 edit) for sharpness. Swap in the original photos when available.
 export type Photo = { src: string; alt: string; width: number; height: number };
 export type Gallery = { slug: string; title: string; label: string; blurb: string; cover: Photo; photos: Photo[] };
 
-const cover = (slug: string, alt: string): Photo => ({ src: `/img/portfolio/${slug}.webp`, alt, width: 237, height: 156 });
+const cover = (slug: string, alt: string): Photo => ({ src: `/img/portfolio/${slug}.webp`, alt, width: 1200, height: 800 });
 
 export const galleries: Gallery[] = [
   {
