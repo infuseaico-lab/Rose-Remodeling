@@ -478,3 +478,8 @@ form small { color: var(--muted); font-size: .8125rem; }
 .foot .brand img { height: clamp(80px, 8vw, 112px); }
 .foot__head { color: #fff; }
 .foot__legal { border-top-color: rgb(255 255 255 / .2); color: #EAD7E2; }
+
+/* footer: four equal columns */
+@media (min-width: 48em) { .foot__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
+.foot .brand { display: block; width: 100%; }
+.foot .brand img { width: 100%; max-width: 300px; height: auto; }
