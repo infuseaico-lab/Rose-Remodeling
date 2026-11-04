@@ -257,3 +257,12 @@ form small { color: var(--muted); font-size: .8125rem; }
 .hero__media .score { position: static; }
 @media (min-width: 56em) { .hero__media { justify-content: flex-end; } .hero__inner { grid-template-columns: 1.4fr .6fr; } }
 @media (max-width: 55.99em) { .hero::before { background: linear-gradient(0deg, rgb(28 25 26 / .95), rgb(28 25 26 / .7) 55%, rgb(28 25 26 / .35)); } }
+
+/* services: tighter spacing */
+#services { padding-block: clamp(48px, 6vw, 72px); }
+#services .head { margin-bottom: clamp(20px, 3vw, 32px); gap: 10px; }
+.svcs { gap: 14px; }
+.svc { gap: 8px; padding-bottom: 16px; }
+.svc > :not(.ph):not(.svc__img) { margin-inline: 16px; }
+.svc .ph, .svc__img { aspect-ratio: 16 / 9; margin-bottom: 4px; }
+.svc__list { gap: 2px; padding-top: 8px; }
