@@ -42,6 +42,14 @@ export const promises = [
   { title: 'Design-Build Harmony', text: 'No friction between designers and builders. One team handles everything from 3D renderings to construction.' },
 ];
 
+// Vimeo project videos from the current site.
+export const videos = [
+  { id: '1147816134', title: 'Meet Rose Remodeling & Design', place: 'Bay Area', length: '1:07' },
+  { id: '1012134954', title: 'Two-bathroom remodel', place: 'Burlingame', length: '0:52' },
+  { id: '1009985487', title: 'Closet & bathroom', place: 'Newark', length: '0:39' },
+  { id: '1012129446', title: 'Two glass doors & front door', place: 'Pleasanton', length: '0:50' },
+];
+
 export const projects = [
   { title: 'Two-bathroom remodel', place: 'Burlingame' },
   { title: 'Closet & bathroom', place: 'Newark' },

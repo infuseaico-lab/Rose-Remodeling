@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icons from '../components/Icons.astro';
-import { site, services, steps, promises, projects, reviews, faqs } from '../data/site';
+import { site, services, steps, promises, videos, projects, reviews, faqs } from '../data/site';
 const tel = `tel:${site.phoneTel}`;
 const year = new Date().getFullYear();
 const nav = [['#services', 'Services'], ['#process', 'Process'], ['#promise', 'Our Promise'], ['#work', 'Projects'], ['#reviews', 'Reviews'], ['#faq', 'FAQ']];
@@ -141,21 +141,25 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
     <section class="section section--card" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <header class="head" data-reveal>
-          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg>Projects</span>
-          <h2 class="h2" id="work-title">Before &amp; After</h2>
-          <p>Recent remodels around the Bay Area.</p>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Project Videos</span>
+          <h2 class="h2" id="work-title">See Our Work</h2>
+          <p>Walk through recent remodels around the Bay Area.</p>
         </header>
-        <div class="work">
-          {projects.map((p) => (
-            <figure data-reveal>
-              <div class="ba">
-                <div class="ph ph--light" role="img" aria-label={`${p.title}, before`}><span>Before</span></div>
-                <div class="ph" role="img" aria-label={`${p.title}, after`}><span>After</span></div>
+        <div class="videos">
+          {videos.map((v, i) => (
+            <figure class={`video${i === 0 ? ' video--lead' : ''}`} data-reveal>
+              <div class="video__frame" data-vimeo={v.id} data-title={v.title}>
+                <button class="video__play" type="button" aria-label={`Play video: ${v.title}, ${v.place} (${v.length})`}>
+                  <span class="video__btn" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
+                  <span class="video__len" aria-hidden="true">{v.length}</span>
+                  <span class="video__label" aria-hidden="true">{v.title}</span>
+                </button>
               </div>
-              <figcaption><strong>{p.title}</strong><span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>{p.place}</span></figcaption>
+              <figcaption><strong>{v.title}</strong><span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>{v.place}</span></figcaption>
             </figure>
           ))}
         </div>
+        <p class="video__more"><a class="link" href="https://vimeo.com/1147816134" target="_blank" rel="noopener">More on Vimeo <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </section>
 
@@ -321,6 +325,18 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
       dock?.classList.toggle('is-on', visible.size === 0);
     });
     watched.forEach((el) => dio.observe(el));
+
+    // Vimeo: load the player only when a visitor presses play (keeps the page fast).
+    document.querySelectorAll<HTMLElement>('[data-vimeo]').forEach((frame) => {
+      frame.querySelector('button')?.addEventListener('click', () => {
+        const f = document.createElement('iframe');
+        f.src = `https://player.vimeo.com/video/${frame.dataset.vimeo}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
+        f.title = frame.dataset.title || 'Project video';
+        f.allow = 'autoplay; fullscreen; picture-in-picture';
+        f.allowFullscreen = true;
+        frame.replaceChildren(f);
+      });
+    });
 
     // No form endpoint configured: hand the request to the visitor's email app.
     const form = document.getElementById('estimate-form') as HTMLFormElement | null;
