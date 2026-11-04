@@ -5,7 +5,7 @@ const { g } = Astro.props;
 ---
 <li class="gcard" data-reveal>
   <a href={`/portfolio/photo-galleries/${g.slug}/`}>
-    <span class="gcard__media"><img src={g.cover.src} width={g.cover.width} height={g.cover.height} alt="" loading="lazy" /></span>
+    <span class="gcard__media"><img src={g.cover.thumb ?? g.cover.src} width={g.cover.width} height={g.cover.height} alt="" loading="lazy" /></span>
     <span class="gcard__body">
       <span class="gcard__label">{g.label}</span>
       <span class="gcard__blurb">{g.blurb}</span>

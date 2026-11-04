@@ -18,13 +18,13 @@ const others = galleries.filter((x) => x.slug !== g.slug);
       <ul class="pgrid" data-gallery>
         {photos.map((p, i) => (
           <li data-reveal>
-            <button type="button" class="pgrid__btn" data-index={i} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.alt}`}>
-              <img src={p.src} width={p.width} height={p.height} alt={p.alt} loading={i < 3 ? 'eager' : 'lazy'} />
+            <button type="button" class="pgrid__btn" data-index={i} data-full={p.src} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.alt}`}>
+              <img src={p.thumb ?? p.src} width={p.width} height={p.height} alt={p.alt} loading={i < 6 ? 'eager' : 'lazy'} decoding="async" />
             </button>
           </li>
         ))}
       </ul>
-      {g.photos.length === 0 && <p class="pnote">More photos from these projects are on the way.</p>}
+      {g.photos.length === 0 ? <p class="pnote">More photos from these projects are on the way.</p> : <p class="pnote">{photos.length} photos. Click any photo to view it full size.</p>}
 
       <div class="pnav">
         <a class="link" href="/portfolio/photo-galleries/"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg> All galleries</a>
@@ -65,7 +65,7 @@ const others = galleries.filter((x) => x.slug !== g.slug);
     const show = (i: number) => {
       cur = (i + btns.length) % btns.length;
       const src = btns[cur].querySelector('img')!;
-      if (img) { img.src = src.currentSrc || src.src; img.alt = src.alt; }
+      if (img) { img.src = btns[cur].dataset.full || src.currentSrc || src.src; img.alt = src.alt; }
       if (count) count.textContent = `${cur + 1} / ${btns.length}`;
       dlg?.querySelectorAll<HTMLElement>('.lightbox__prev, .lightbox__next').forEach((b) => (b.hidden = btns.length < 2));
     };
