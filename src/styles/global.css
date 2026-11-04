@@ -264,7 +264,7 @@ form small { color: var(--muted); font-size: .8125rem; }
 .svcs { gap: 14px; }
 .svc { gap: 8px; padding-bottom: 16px; }
 .svc > :not(.ph):not(.svc__img) { margin-inline: 16px; }
-.svc .ph, .svc__img { aspect-ratio: 16 / 9; margin-bottom: 4px; }
+.svc .ph, .svc__img { aspect-ratio: 16 / 9; margin-bottom: 4px; object-position: 50% 50% !important; }
 .svc__list { gap: 2px; padding-top: 8px; }
 
 /* "Find us on" logo strip */
@@ -369,3 +369,4 @@ form small { color: var(--muted); font-size: .8125rem; }
 .bar__nav.is-open .nav-group__btn { width: 100%; min-height: 52px; justify-content: space-between; font-size: 1.0625rem; }
 .bar__nav.is-open .nav-group__btn[aria-expanded="true"] + .nav-group__menu { display: grid; padding: 0 0 8px 8px; }
 .bar__nav.is-open .nav-group__menu a { min-height: 44px; border-bottom: 0; font-size: 1rem; }
+.svc > .svc__img { margin-inline: 0; width: 100%; }
