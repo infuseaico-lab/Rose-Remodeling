@@ -277,3 +277,17 @@ form small { color: var(--muted); font-size: .8125rem; }
 .badges__list img.is-angi { height: 36px; }
 .badges__list li:hover img { transform: translateY(-2px); }
 @media (max-width: 40em) { .badges__inner { flex-direction: column; } .badges__list img { height: 36px; } .badges__list img.is-word { height: 22px; } .badges__list img.is-angi { height: 30px; } }
+
+/* award */
+.award { position: relative; isolation: isolate; overflow: hidden; }
+.award::before { content: ""; position: absolute; z-index: -1; width: 46vmax; height: 46vmax; left: -12vmax; top: 50%; transform: translateY(-50%); border-radius: 50%; background: radial-gradient(circle, rgb(212 161 42 / .16), transparent 65%); }
+.award__inner { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 56em) { .award__inner { grid-template-columns: 1fr 1fr; gap: 72px; } }
+.award__media img { width: 100%; max-width: 480px; margin-inline: auto; filter: drop-shadow(0 24px 32px rgb(28 25 26 / .28)); }
+.award__copy { display: grid; gap: 14px; }
+.award__copy > p { color: var(--muted); max-width: 32rem; }
+.award__kicker { font: 500 clamp(1.5rem, 1rem + 2vw, 2.25rem)/1 var(--display); letter-spacing: .06em; text-transform: uppercase; color: #B8892A !important; }
+.award__meta { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--fg) !important; }
+.award__meta img { width: 22px; height: 22px; }
+.award__dot { width: 8px; height: 8px; border-radius: 50%; background: #D4A12A; }
+.award__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 6px; }
