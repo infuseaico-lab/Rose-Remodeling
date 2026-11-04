@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icons from '../components/Icons.astro';
-import { site, services, steps, promises, videos, projects, reviews, faqs } from '../data/site';
+import { site, services, steps, promises, videos, projects, platforms, reviews, faqs } from '../data/site';
 const tel = `tel:${site.phoneTel}`;
 const year = new Date().getFullYear();
 const nav = [['#services', 'Services'], ['#process', 'Process'], ['#promise', 'Our Promise'], ['#work', 'Projects'], ['#reviews', 'Reviews'], ['#faq', 'FAQ']];
@@ -186,22 +186,49 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
       <div class="wrap">
         <header class="head" data-reveal>
           <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>Reviews</span>
-          <h2 class="h2" id="reviews-title">Homeowners on Adir &amp; the Crew</h2>
-          <p>Short excerpts from Google reviews.</p>
+          <h2 class="h2" id="reviews-title">Rated Excellent, Everywhere We’re Reviewed</h2>
+          <p>100+ reviews across Google, Yelp, Thumbtack and HomeAdvisor. A few of our favorites:</p>
         </header>
-        <div class="quotes">
-          {reviews.map((r) => (
-            <blockquote class="quote" data-reveal>
+        <ul class="platforms" data-reveal>
+          {platforms.map((pf) => (
+            <li class="platform">
+              <span class={`plogo plogo--${pf.key}`}>
+                {pf.key === 'google' && <img src="/img/badges/google.png" width="85" height="86" alt="" />}
+                {pf.key === 'thumbtack' && <img src="/img/badges/thumbtack.png" width="93" height="93" alt="" />}
+                <span>{pf.name}</span>
+              </span>
               <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
-              <p>“{r.quote}”</p>
-              <footer>{r.who} · {r.job}</footer>
-            </blockquote>
+              <span class="platform__meta"><strong>{pf.label}</strong>{pf.count ? ` · ${pf.count} reviews` : ''}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="rtabs" role="group" aria-label="Filter reviews by site" data-reveal>
+          <button type="button" aria-pressed="true" data-filter="all">All</button>
+          {platforms.filter((pf) => reviews.some((r) => r.platform === pf.key)).map((pf) => (
+            <button type="button" aria-pressed="false" data-filter={pf.key}>{pf.name}</button>
           ))}
         </div>
-        <div class="proof">
-          <span><strong>{site.rating.count}</strong>Google reviews, rated Excellent</span>
-          <span><strong>100+</strong>reviews incl. HomeAdvisor</span>
-          <span><strong>Top 3</strong>in Sunnyvale, 2025</span>
+        <div class="rcarousel">
+          <ul class="rlist" data-rlist tabindex="0" aria-label="Customer reviews">
+            {reviews.map((r) => {
+              const pf = platforms.find((x) => x.key === r.platform)!;
+              return (
+                <li class="rcard" data-platform={r.platform}>
+                  <div class="rcard__top">
+                    <span class="rcard__avatar" aria-hidden="true">{r.who.charAt(0)}</span>
+                    <span class="rcard__who"><strong>{r.who}</strong><small>{r.when}</small></span>
+                    <span class={`rcard__src rcard__src--${r.platform}`}>{pf.name}</span>
+                  </div>
+                  <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+                  <p>“{r.quote}”</p>
+                </li>
+              );
+            })}
+          </ul>
+          <div class="rnav">
+            <button class="rnav__btn" type="button" data-rprev aria-label="Previous reviews"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="rnav__btn" type="button" data-rnext aria-label="Next reviews"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
         </div>
       </div>
     </section>
@@ -337,6 +364,18 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
         frame.replaceChildren(f);
       });
     });
+
+    // Reviews: filter by site, and arrow buttons scroll the row.
+    const rlist = document.querySelector<HTMLElement>('[data-rlist]');
+    const tabs = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      tabs.forEach((x) => x.setAttribute('aria-pressed', String(x === t)));
+      rlist?.querySelectorAll<HTMLElement>('[data-platform]').forEach((c) => { c.hidden = t.dataset.filter !== 'all' && c.dataset.platform !== t.dataset.filter; });
+      rlist?.scrollTo({ left: 0 });
+    }));
+    const step = () => (rlist?.clientWidth ?? 300) * 0.9;
+    document.querySelector('[data-rprev]')?.addEventListener('click', () => rlist?.scrollBy({ left: -step(), behavior: 'smooth' }));
+    document.querySelector('[data-rnext]')?.addEventListener('click', () => rlist?.scrollBy({ left: step(), behavior: 'smooth' }));
 
     // No form endpoint configured: hand the request to the visitor's email app.
     const form = document.getElementById('estimate-form') as HTMLFormElement | null;

@@ -56,10 +56,24 @@ export const projects = [
   { title: 'Glass & front doors', place: 'Pleasanton' },
 ];
 
+// Review platforms and excerpts, transcribed from the widgets on the current site.
+export const platforms = [
+  { key: 'google', name: 'Google', label: 'Excellent', count: 50 },
+  { key: 'yelp', name: 'Yelp', label: 'Excellent', count: 17 },
+  { key: 'thumbtack', name: 'Thumbtack', label: 'Excellent', count: 39 },
+  { key: 'homeadvisor', name: 'HomeAdvisor', label: '5.0 rating', count: 0 },
+];
+
 export const reviews = [
-  { quote: 'Finding a dependable contractor isn’t easy, but they made it effortless.', who: 'Rosa V.', job: 'Addition' },
-  { quote: 'They fixed rotted wood and plumbing issues with no additional cost.', who: 'Tiffany B.', job: 'Bathroom' },
-  { quote: 'Every guest who visits compliments the new design.', who: 'Martinez', job: 'Kitchen & dining' },
+  { platform: 'google', who: 'Terrance Jackson', when: '1 year ago', quote: 'We love how our home renovation turned out. Adir was easy to work with, very responsive, and always kept things moving smoothly.' },
+  { platform: 'thumbtack', who: 'Darrell B.', when: '12 months ago', quote: 'We were lucky to have Adir guide us through our remodeling project. His design sense, patience, and dedication made all the difference.' },
+  { platform: 'yelp', who: 'Saurabh M.', when: '2 years ago', quote: 'We contacted Rose Remodeling for our bathroom remodel. Adir was very prompt and he provided us with some great designs.' },
+  { platform: 'google', who: 'Shirish Gajera', when: '1 year ago', quote: 'Highly recommend Rose Remodeling and Adir! We converted one full bathroom into two…' },
+  { platform: 'thumbtack', who: 'Martinez', when: '12 months ago', quote: 'We worked with Adir to remodel our kitchen and dining area, and we’re thrilled with the transformation. He provided expert advice on layout and materials.' },
+  { platform: 'yelp', who: 'Ritika B.', when: '2 years ago', quote: 'We finalized Rose Remodeling after talking to four other contractors…' },
+  { platform: 'google', who: 'Tracy Kim', when: '1 year ago', quote: 'The project turned out beautifully… the execution was flawless.' },
+  { platform: 'thumbtack', who: 'Lehou J.', when: '12 months ago', quote: 'I can’t say enough good things about Rose Remodeling & Design. They remodeled our master bathroom, and the results are stunning.' },
+  { platform: 'yelp', who: 'Saurabh S.', when: '1 year ago', quote: 'Highly recommended!! Adir and his team did a great job in remodeling our master and guest…' },
 ];
 
 export const faqs = [
