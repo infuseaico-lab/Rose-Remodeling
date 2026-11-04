@@ -1,0 +1,80 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { galleries, allPhotos, type Gallery } from '../../../data/galleries';
+
+export function getStaticPaths() {
+  return galleries.map((g) => ({ params: { slug: g.slug }, props: { g } }));
+}
+const { g } = Astro.props as { g: Gallery };
+const photos = allPhotos(g);
+const others = galleries.filter((x) => x.slug !== g.slug);
+---
+<SiteLayout title={`${g.title} | Photo Gallery | Rose Remodeling & Design`} description={`${g.title} by Rose Remodeling & Design in Sunnyvale and the Bay Area. ${g.blurb}`}>
+  <PageHead title={g.title} intro={g.blurb} crumbs={[{ href: '/', label: 'Home' }, { href: '/portfolio/', label: 'Portfolio' }, { href: '/portfolio/photo-galleries/', label: 'Photo Galleries' }, { label: g.label }]} />
+
+  <section class="section">
+    <div class="wrap">
+      <ul class="pgrid" data-gallery>
+        {photos.map((p, i) => (
+          <li data-reveal>
+            <button type="button" class="pgrid__btn" data-index={i} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.alt}`}>
+              <img src={p.src} width={p.width} height={p.height} alt={p.alt} loading={i < 3 ? 'eager' : 'lazy'} />
+            </button>
+          </li>
+        ))}
+      </ul>
+      {g.photos.length === 0 && <p class="pnote">More photos from these projects are on the way.</p>}
+
+      <div class="pnav">
+        <a class="link" href="/portfolio/photo-galleries/"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg> All galleries</a>
+        <span class="pnav__others">
+          {others.map((o) => <a class="chip" href={`/portfolio/photo-galleries/${o.slug}/`}>{o.label}</a>)}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark cta">
+    <div class="wrap cta__inner">
+      <div class="cta__copy">
+        <h2 class="h2">Planning a project like this?</h2>
+        <p>Tell us about it and Adir will call you back to book a free in-home consultation.</p>
+      </div>
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/#estimate">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+    <img data-lb-img alt="" />
+    <p class="lightbox__count" data-lb-count></p>
+    <button class="lightbox__btn lightbox__close" type="button" data-lb-close aria-label="Close">&times;</button>
+    <button class="lightbox__btn lightbox__prev" type="button" data-lb-prev aria-label="Previous photo"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+    <button class="lightbox__btn lightbox__next" type="button" data-lb-next aria-label="Next photo"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  </dialog>
+
+  <script>
+    // Lightbox: click a photo to view it large; arrows and keyboard move between photos.
+    const dlg = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const btns = [...document.querySelectorAll<HTMLButtonElement>('[data-gallery] [data-index]')];
+    const img = dlg?.querySelector<HTMLImageElement>('[data-lb-img]');
+    const count = dlg?.querySelector('[data-lb-count]');
+    let cur = 0;
+    const show = (i: number) => {
+      cur = (i + btns.length) % btns.length;
+      const src = btns[cur].querySelector('img')!;
+      if (img) { img.src = src.currentSrc || src.src; img.alt = src.alt; }
+      if (count) count.textContent = `${cur + 1} / ${btns.length}`;
+      dlg?.querySelectorAll<HTMLElement>('.lightbox__prev, .lightbox__next').forEach((b) => (b.hidden = btns.length < 2));
+    };
+    btns.forEach((b, i) => b.addEventListener('click', () => { show(i); dlg?.showModal(); }));
+    dlg?.querySelector('[data-lb-close]')?.addEventListener('click', () => dlg.close());
+    dlg?.querySelector('[data-lb-prev]')?.addEventListener('click', () => show(cur - 1));
+    dlg?.querySelector('[data-lb-next]')?.addEventListener('click', () => show(cur + 1));
+    dlg?.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg?.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+    dlg?.addEventListener('close', () => btns[cur]?.focus());
+  </script>
+</SiteLayout>

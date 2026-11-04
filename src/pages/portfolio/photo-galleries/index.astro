@@ -1,0 +1,14 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import PageHead from '../../../components/PageHead.astro';
+import GalleryCard from '../../../components/GalleryCard.astro';
+import { galleries } from '../../../data/galleries';
+---
+<SiteLayout title="Photo Galleries | Rose Remodeling & Design" description="Photo galleries of kitchen, bathroom, addition and full-house remodels by Rose Remodeling & Design in the Bay Area.">
+  <PageHead title="Photo Galleries" intro="Pick a project type to see the photos." crumbs={[{ href: '/', label: 'Home' }, { href: '/portfolio/', label: 'Portfolio' }, { label: 'Photo Galleries' }]} />
+  <section class="section">
+    <div class="wrap">
+      <ul class="gcards">{galleries.map((g) => <GalleryCard g={g} />)}</ul>
+    </div>
+  </section>
+</SiteLayout>

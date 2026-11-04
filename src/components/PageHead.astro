@@ -1,0 +1,16 @@
+---
+// Dark title band for inner pages, with breadcrumb.
+interface Props { title: string; intro?: string; crumbs: { href?: string; label: string }[] }
+const { title, intro, crumbs } = Astro.props;
+---
+<section class="pagehead">
+  <div class="wrap pagehead__inner">
+    <nav aria-label="Breadcrumb">
+      <ol class="crumbs">
+        {crumbs.map((c) => <li>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+      </ol>
+    </nav>
+    <h1 class="pagehead__title">{title}</h1>
+    {intro && <p class="pagehead__intro">{intro}</p>}
+  </div>
+</section>

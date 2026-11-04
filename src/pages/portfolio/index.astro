@@ -1,0 +1,38 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import GalleryCard from '../../components/GalleryCard.astro';
+import { galleries } from '../../data/galleries';
+import { videos } from '../../data/site';
+---
+<SiteLayout title="Portfolio | Rose Remodeling & Design" description="Kitchens, bathrooms, additions and full-house remodels by Rose Remodeling & Design in Sunnyvale and the Bay Area. Photo galleries and project videos.">
+  <PageHead title="Our Portfolio" intro="Recent kitchens, bathrooms, additions and whole-home remodels around the Bay Area." crumbs={[{ href: '/', label: 'Home' }, { label: 'Portfolio' }]} />
+
+  <section class="section">
+    <div class="wrap">
+      <header class="head head--row" data-reveal>
+        <div class="stack">
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Photo Galleries</span>
+          <h2 class="h2">Browse by Project Type</h2>
+        </div>
+        <a class="link" href="/portfolio/photo-galleries/">All photo galleries <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </header>
+      <ul class="gcards">{galleries.map((g) => <GalleryCard g={g} />)}</ul>
+    </div>
+  </section>
+
+  <section class="section section--card">
+    <div class="wrap">
+      <header class="head head--row" data-reveal>
+        <div class="stack">
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Project Videos</span>
+          <h2 class="h2">Walkthrough Videos</h2>
+        </div>
+        <a class="link" href="/#work">Watch on the home page <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </header>
+      <ul class="vlist" data-reveal>
+        {videos.map((v) => <li><a href={`https://vimeo.com/${v.id}`} target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg><span><strong>{v.title}</strong><small>{v.place} · {v.length}</small></span></a></li>)}
+      </ul>
+    </div>
+  </section>
+</SiteLayout>
