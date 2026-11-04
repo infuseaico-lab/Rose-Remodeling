@@ -32,6 +32,16 @@ export const steps = [
   { title: 'Build & Manage', text: 'A clean job site, daily updates from your project manager, finished on schedule.' },
 ];
 
+// The six promises from the current site.
+export const promises = [
+  { title: 'Honest Communication', text: 'No hidden costs or silent treatments. A dedicated project manager keeps you informed every single day.' },
+  { title: 'Structural Integrity', text: 'We don’t cover up problems; we fix them. Our “strong foundation” approach keeps your remodel safe, compliant and durable.' },
+  { title: 'Licensed Experts', text: 'Fully licensed, insured and bonded, with a team that knows local building codes in Sunnyvale and the Bay Area.' },
+  { title: 'Timely Delivery', text: 'We respect your time and your schedule. Our workflow is built to get you back into your home on time.' },
+  { title: 'Clean Job Sites', text: 'Tidy crews and protective barriers that keep dust and disruption to a minimum.' },
+  { title: 'Design-Build Harmony', text: 'No friction between designers and builders. One team handles everything from 3D renderings to construction.' },
+];
+
 export const projects = [
   { title: 'Two-bathroom remodel', place: 'Burlingame' },
   { title: 'Closet & bathroom', place: 'Newark' },
