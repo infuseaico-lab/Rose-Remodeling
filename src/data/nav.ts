@@ -15,8 +15,6 @@ export const mainNav: Item[] = [
       { href: '/#services', label: 'All Services', icon: 'grid' },
     ],
   },
-  { href: '/#process', label: 'Process' },
-  { href: '/#promise', label: 'Our Promise' },
   {
     label: 'Portfolio',
     id: 'nav-portfolio',
