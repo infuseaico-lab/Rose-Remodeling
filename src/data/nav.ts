@@ -24,8 +24,6 @@ export const mainNav: Item[] = [
       { href: '/#work', label: 'Project Videos', icon: 'play' },
     ],
   },
-  { href: '/#reviews', label: 'Reviews' },
-  { href: '/#faq', label: 'FAQ' },
   { href: '/about/', label: 'About Us' },
   { href: '/contact/', label: 'Contact Us' },
 ];
