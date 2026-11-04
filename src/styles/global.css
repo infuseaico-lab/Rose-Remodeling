@@ -483,3 +483,10 @@ form small { color: var(--muted); font-size: .8125rem; }
 @media (min-width: 48em) { .foot__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
 .foot .brand { display: block; width: 100%; }
 .foot .brand img { width: 100%; max-width: 300px; height: auto; }
+
+/* footer: equal gaps between the four blocks (each block as wide as its content) */
+@media (min-width: 48em) {
+  .foot__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px 40px; }
+  .foot__grid > div { flex: 0 0 auto; }
+  .foot__grid > div:first-child { width: 300px; max-width: 100%; }
+}
