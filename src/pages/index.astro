@@ -148,12 +148,8 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
         <div class="videos">
           {videos.map((v, i) => (
             <figure class={`video${i === 0 ? ' video--lead' : ''}`} data-reveal>
-              <div class="video__frame" data-vimeo={v.id} data-title={v.title}>
-                <button class="video__play" type="button" aria-label={`Play video: ${v.title}, ${v.place} (${v.length})`}>
-                  <span class="video__btn" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
-                  <span class="video__len" aria-hidden="true">{v.length}</span>
-                  <span class="video__label" aria-hidden="true">{v.title}</span>
-                </button>
+              <div class="video__frame">
+                <iframe src={`https://player.vimeo.com/video/${v.id}?badge=0&autopause=0&player_id=0&app_id=58479`} title={`${v.title}, ${v.place}`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
               <figcaption><strong>{v.title}</strong><span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>{v.place}</span></figcaption>
             </figure>
@@ -352,18 +348,6 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
       dock?.classList.toggle('is-on', visible.size === 0);
     });
     watched.forEach((el) => dio.observe(el));
-
-    // Vimeo: load the player only when a visitor presses play (keeps the page fast).
-    document.querySelectorAll<HTMLElement>('[data-vimeo]').forEach((frame) => {
-      frame.querySelector('button')?.addEventListener('click', () => {
-        const f = document.createElement('iframe');
-        f.src = `https://player.vimeo.com/video/${frame.dataset.vimeo}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
-        f.title = frame.dataset.title || 'Project video';
-        f.allow = 'autoplay; fullscreen; picture-in-picture';
-        f.allowFullscreen = true;
-        frame.replaceChildren(f);
-      });
-    });
 
     // Reviews: filter by site, and arrow buttons scroll the row.
     const rlist = document.querySelector<HTMLElement>('[data-rlist]');

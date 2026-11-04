@@ -44,7 +44,7 @@ export const promises = [
 
 // Vimeo project videos from the current site.
 export const videos = [
-  { id: '1147816134', title: 'Meet Rose Remodeling & Design', place: 'Bay Area', length: '1:07' },
+  { id: '1147816134', title: 'Home remodel walkthrough with Adir', place: 'Fremont', length: '1:07' },
   { id: '1012134954', title: 'Two-bathroom remodel', place: 'Burlingame', length: '0:52' },
   { id: '1009985487', title: 'Closet & bathroom', place: 'Newark', length: '0:39' },
   { id: '1012129446', title: 'Two glass doors & front door', place: 'Pleasanton', length: '0:50' },
