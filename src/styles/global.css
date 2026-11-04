@@ -5,7 +5,7 @@
   --accent: #E7B7AE; --accent-hover: #F0C9C1; --on-accent: #221E1F; --accent-deep: #A4544A;
   --ink: #1C191A; --on-ink: #F7F1EF; --on-ink-muted: #CFC6C3;
   --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --display: "Outfit", "DM Sans", system-ui, sans-serif;
+  --display: "Google Sans Flex", "DM Sans", system-ui, sans-serif;
   --h1: clamp(2.25rem, 1.3rem + 4vw, 4.25rem);
   --h2: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
   --h3: 1.1875rem;
@@ -370,3 +370,8 @@ form small { color: var(--muted); font-size: .8125rem; }
 .bar__nav.is-open .nav-group__btn[aria-expanded="true"] + .nav-group__menu { display: grid; padding: 0 0 8px 8px; }
 .bar__nav.is-open .nav-group__menu a { min-height: 44px; border-bottom: 0; font-size: 1rem; }
 .svc > .svc__img { margin-inline: 0; width: 100%; }
+
+/* hero slideshow */
+.hero__slides { position: absolute; inset: 0; z-index: -2; }
+.hero__slides .hero__bg { opacity: 0; transition: opacity 1.4s ease; }
+.hero__slides .hero__bg.is-on { opacity: 1; }
