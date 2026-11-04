@@ -268,7 +268,7 @@ form small { color: var(--muted); font-size: .8125rem; }
 .svc__list { gap: 2px; padding-top: 8px; }
 
 /* "Find us on" logo strip */
-.badges { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 22px; }
+.badges { background: var(--card); border-bottom: 1px solid var(--line); padding-block: 28px; }
 .badges__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
 .badges__title { font: 600 .75rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .badges__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px clamp(20px, 4vw, 48px); flex: 1; }
