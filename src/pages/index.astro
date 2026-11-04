@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import EstimateForm from '../components/EstimateForm.astro';
 import { site, services, steps, promises, videos, projects, platforms, reviews, faqs } from '../data/site';
 import { slug } from '../data/nav';
+import { serviceHref } from '../data/servicePages';
 const tel = `tel:${site.phoneTel}`;
 ---
 <SiteLayout
@@ -62,7 +63,7 @@ const tel = `tel:${site.phoneTel}`;
               <h3 class="h3"><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg></span>{s.name}</h3>
               <p>{s.blurb}</p>
               <ul class="svc__list">{s.bullets.map((b) => <li>{b}</li>)}</ul>
-              <a class="link" href="/#estimate" aria-label={`Get an estimate for ${s.name.toLowerCase()}`}>Get an estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="link" href={serviceHref(s.name)} aria-label={`Learn more about ${s.name.toLowerCase()}`}>Learn more <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </li>
           ))}
         </ul>

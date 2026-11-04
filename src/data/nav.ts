@@ -1,4 +1,5 @@
 import { services } from './site';
+import { serviceHref } from './servicePages';
 
 export const slug = (t: string) => 'svc-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
 
@@ -11,8 +12,8 @@ export const mainNav: Item[] = [
     label: 'Services',
     id: 'nav-services',
     items: [
-      ...services.map((s) => ({ href: `/#${slug(s.name)}`, label: s.name, icon: s.icon })),
-      { href: '/#services', label: 'All Services', icon: 'grid' },
+      ...services.map((s) => ({ href: serviceHref(s.name), label: s.name, icon: s.icon })),
+      { href: '/services/', label: 'All Services', icon: 'grid' },
     ],
   },
   {

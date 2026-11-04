@@ -1,7 +1,7 @@
 ---
 import { site, services } from '../data/site';
-interface Props { message?: boolean; id?: string }
-const { message = false, id = 'estimate-form' } = Astro.props;
+interface Props { message?: boolean; id?: string; selected?: string }
+const { message = false, id = 'estimate-form', selected } = Astro.props;
 ---
 <form id={id} class="estimate-form" method="post" action={site.formAction || undefined} data-email={site.email}>
   <div class="row">
@@ -11,7 +11,7 @@ const { message = false, id = 'estimate-form' } = Astro.props;
   <div class="row">
     <label>ZIP code<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" /></label>
     <label>Project
-      <select name="project">{services.map((s) => <option>{s.name}</option>)}</select>
+      <select name="project">{services.map((s) => <option selected={s.name === selected}>{s.name}</option>)}</select>
     </label>
   </div>
   {message && <label>Tell us about your project<textarea name="message" rows="4"></textarea></label>}

@@ -1,0 +1,96 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import { servicePages, type ServicePage } from '../../data/servicePages';
+import { galleries, allPhotos } from '../../data/galleries';
+import { site, steps, promises } from '../../data/site';
+
+export function getStaticPaths() {
+  return servicePages.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: ServicePage };
+const g = s.gallery ? galleries.find((x) => x.slug === s.gallery) : undefined;
+const shots = g ? allPhotos(g).slice(0, 6) : [];
+const realPhotos = g && g.photos.length > 0;
+const hero = realPhotos ? { src: shots[0].src, alt: shots[0].alt } : { src: `${s.img}-1536.webp`, alt: `${s.name}: representative photo` };
+const others = servicePages.filter((x) => x.slug !== s.slug);
+const tel = `tel:${site.phoneTel}`;
+---
+<SiteLayout title={`${s.title} | Rose Remodeling & Design`} description={`${s.intro} Licensed, insured and bonded. Free in-home consultation: ${site.phoneDisplay}.`}>
+  <PageHead title={s.title} intro={s.intro} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]} />
+
+  <section class="section">
+    <div class="wrap about">
+      <div class="about__copy" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg>{s.name}</span>
+        <h2 class="h2">What’s Included</h2>
+        <p>{s.blurb} Everything below is handled by our own design-build team.</p>
+        <ul class="incl">{s.includes.map((i) => <li>{i}</li>)}</ul>
+        <div class="hero__actions">
+          <a class="btn btn--accent btn--lg" href="#quote">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--line btn--lg" href={tel}><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> {site.phoneDisplay}</a>
+        </div>
+      </div>
+      <figure class="about__media" data-reveal>
+        <img src={hero.src} width="1536" height="1024" alt={hero.alt} />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--card">
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-clipboard"/></svg>Process</span>
+        <h2 class="h2">How Your {s.name.replace(/ (Remodeling|Construction)$/, '')} Project Runs</h2>
+      </header>
+      <ol class="steps">
+        {steps.map((st, i) => <li class="step" data-reveal><span class="step__num" aria-hidden="true">0{i + 1}</span><h3 class="h3">{st.title}</h3><p>{st.text}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  {realPhotos && (
+    <section class="section">
+      <div class="wrap">
+        <header class="head head--row" data-reveal>
+          <div class="stack">
+            <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Recent Work</span>
+            <h2 class="h2">Recent {g!.label} Projects</h2>
+          </div>
+          <a class="link" href={`/portfolio/photo-galleries/${g!.slug}/`}>See the full gallery <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </header>
+        <ul class="shots">
+          {shots.map((p) => <li data-reveal><a href={`/portfolio/photo-galleries/${g!.slug}/`}><img src={p.thumb ?? p.src} width={p.width} height={p.height} alt={p.alt} loading="lazy" /></a></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Why Rose</span>
+        <h2 class="h2">What You Can Count On</h2>
+      </header>
+      <ul class="values">
+        {promises.slice(0, 3).map((p, i) => <li data-reveal><span class="values__num" aria-hidden="true">0{i + 1}</span><div><h3 class="h3">{p.title}</h3><p>{p.text}</p></div></li>)}
+      </ul>
+      <div class="pnav">
+        <a class="link" href="/services/"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg> All services</a>
+        <span class="pnav__others">{others.map((o) => <a class="chip" href={`/services/${o.slug}/`}>{o.name}</a>)}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark cta" id="quote">
+    <div class="wrap cta__inner">
+      <div class="cta__copy">
+        <h2 class="h2">Get a Free {s.name} Estimate</h2>
+        <p>Tell us about the project and Adir will call you back to book a free in-home consultation.</p>
+        <p>Prefer to talk now? <a href={tel}>{site.phoneDisplay}</a></p>
+      </div>
+      <EstimateForm id="quote-form" selected={s.name} />
+    </div>
+  </section>
+</SiteLayout>
