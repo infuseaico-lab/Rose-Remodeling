@@ -347,3 +347,25 @@ form small { color: var(--muted); font-size: .8125rem; }
 .rnav__btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgb(247 241 239 / .25); background: transparent; color: var(--on-ink); cursor: pointer; }
 .rnav__btn:hover { background: rgb(247 241 239 / .1); }
 .rnav__btn[data-rprev] .ico { transform: rotate(180deg); }
+
+/* Services submenu: dropdown on desktop, indented list in the phone menu */
+.nav-group { position: relative; }
+.nav-group__btn { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0; border: 0; background: none; color: var(--on-ink); font: 500 1rem var(--font); cursor: pointer; }
+.nav-group__btn:hover { color: var(--accent); }
+.nav-group__btn .ico { transition: transform .2s var(--ease); }
+.nav-group__btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
+.nav-group__menu { display: none; }
+.nav-group__menu a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--on-ink); }
+.nav-group__menu a .ico { color: var(--accent); }
+@media (min-width: 64em) {
+  .bar__nav { align-items: center; }
+  .nav-group__menu { position: absolute; top: calc(100% + 12px); left: -16px; min-width: 260px; padding: 8px; border-radius: var(--r); background: var(--ink); border: 1px solid rgb(247 241 239 / .12); box-shadow: 0 20px 40px -16px rgb(0 0 0 / .6); }
+  .nav-group__menu::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+  .nav-group:hover .nav-group__menu, .nav-group__btn[aria-expanded="true"] + .nav-group__menu { display: grid; }
+  .nav-group__menu a { padding: 10px 12px; border-radius: var(--r-sm); font-size: .9375rem; }
+  .nav-group__menu a:hover { background: rgb(247 241 239 / .08); color: var(--on-ink); }
+}
+.bar__nav.is-open .nav-group { border-bottom: 1px solid rgb(247 241 239 / .12); }
+.bar__nav.is-open .nav-group__btn { width: 100%; min-height: 52px; justify-content: space-between; font-size: 1.0625rem; }
+.bar__nav.is-open .nav-group__btn[aria-expanded="true"] + .nav-group__menu { display: grid; padding: 0 0 8px 8px; }
+.bar__nav.is-open .nav-group__menu a { min-height: 44px; border-bottom: 0; font-size: 1rem; }
