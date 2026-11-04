@@ -435,3 +435,5 @@ form small { color: var(--muted); font-size: .8125rem; }
 .lightbox__next { right: 12px; top: 50%; transform: translateY(-50%); }
 .bar__nav a[aria-current="page"] { color: var(--accent); }
 .lightbox__btn[hidden] { display: none; }
+.badges__list img.is-homemag { height: 22px; }
+@media (max-width: 40em) { .badges__list img.is-homemag { height: 18px; } }
