@@ -28,6 +28,7 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
+      <img class="hero__bg" src="/img/hero-backyard-1600.webp" srcset="/img/hero-backyard-800.webp 800w, /img/hero-backyard-1600.webp 1600w" sizes="100vw" width="1600" height="1064" alt="Backyard remodel at dusk: a covered composite deck with lit steps, a white pergola, lounge seating and a lawn" fetchpriority="high" />
       <div class="wrap hero__inner">
         <div class="hero__copy">
           <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>Top 3 remodeler in Sunnyvale · 2025</span>
@@ -44,12 +45,6 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
           </ul>
         </div>
         <div class="hero__media">
-          <!-- Illustrations, crossfading. Swap for real project photos (astro:assets <Image>, WebP) when available. -->
-          <div class="slides" data-fade>
-            <img class="is-on" src="/img/kitchen.svg" width="800" height="1000" alt="Illustration of a modern kitchen with a white stone island, charcoal cabinets and brass pendant lights" fetchpriority="high" />
-            <img src="/img/bathroom.svg" width="800" height="1000" alt="Illustration of a modern bathroom with a floating oak double vanity, round brass mirrors and a glass walk-in shower" loading="lazy" />
-            <img src="/img/backyard.svg" width="800" height="1000" alt="Illustration of a backyard ADU with white stucco, oak siding and a glass slider, beside a lawn and paver path" loading="lazy" />
-          </div>
           <div class="score">
             <strong>{site.rating.value}</strong>
             <span><span class="stars" aria-hidden="true">★★★★★</span><br />Rated Excellent · {site.rating.count} Google reviews</span>
@@ -292,13 +287,6 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
       dock?.classList.toggle('is-on', visible.size === 0);
     });
     watched.forEach((el) => dio.observe(el));
-
-    // Hero crossfade
-    const slides = document.querySelectorAll('[data-fade] img');
-    if (slides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      let n = 0;
-      setInterval(() => { slides[n].classList.remove('is-on'); n = (n + 1) % slides.length; slides[n].classList.add('is-on'); }, 5000);
-    }
 
     // No form endpoint configured: hand the request to the visitor's email app.
     const form = document.getElementById('estimate-form') as HTMLFormElement | null;
