@@ -502,3 +502,4 @@ form small { color: var(--muted); font-size: .8125rem; }
 .promise__bg { filter: none; transform: none; object-position: 50% 55%; }
 .promise::before { background: linear-gradient(180deg, rgb(28 25 26 / .84), rgb(28 25 26 / .72) 50%, rgb(28 25 26 / .86)); }
 @media (min-width: 56em) { .hero__inner { grid-template-columns: minmax(0, 1fr) auto; } }
+@media (min-width: 56em) and (max-width: 74.99em) { .hero__inner { grid-template-columns: minmax(0, 1fr); } .hero__media { justify-content: flex-start; } }
