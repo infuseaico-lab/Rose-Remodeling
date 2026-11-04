@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import EstimateForm from '../components/EstimateForm.astro';
 import { site, services, steps, promises, videos, projects, platforms, reviews, faqs } from '../data/site';
 import { slug } from '../data/nav';
 const tel = `tel:${site.phoneTel}`;
@@ -262,20 +263,7 @@ const tel = `tel:${site.phoneTel}`;
           <p>Tell us about the project. Adir will call you back to talk it through and book a free in-home consultation.</p>
           <p>Prefer to talk now? <a href={tel}>{site.phoneDisplay}</a></p>
         </div>
-        <form id="estimate-form" method="post" action={site.formAction || undefined} data-email={site.email}>
-          <div class="row">
-            <label>Your name<input type="text" name="name" autocomplete="name" required /></label>
-            <label>Phone<input type="tel" name="phone" autocomplete="tel" required /></label>
-          </div>
-          <div class="row">
-            <label>ZIP code<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" /></label>
-            <label>Project
-              <select name="project">{services.map((s) => <option>{s.name}</option>)}</select>
-            </label>
-          </div>
-          <button type="submit" class="btn btn--accent btn--lg">Get My Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <small>No obligation. We reply within one business day.</small>
-        </form>
+        <EstimateForm />
       </div>
     </section>
 
@@ -306,15 +294,5 @@ const tel = `tel:${site.phoneTel}`;
     document.querySelector('[data-rprev]')?.addEventListener('click', () => rlist?.scrollBy({ left: -step(), behavior: 'smooth' }));
     document.querySelector('[data-rnext]')?.addEventListener('click', () => rlist?.scrollBy({ left: step(), behavior: 'smooth' }));
 
-    // No form endpoint configured: hand the request to the visitor's email app.
-    const form = document.getElementById('estimate-form') as HTMLFormElement | null;
-    if (form && !form.getAttribute('action')) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const d = new FormData(form);
-        const body = ['name', 'phone', 'zip', 'project'].map((k) => `${k}: ${d.get(k) ?? ''}`).join('\n');
-        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Free estimate request')}&body=${encodeURIComponent(body)}`;
-      });
-    }
   </script>
 </SiteLayout>

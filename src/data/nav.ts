@@ -26,4 +26,6 @@ export const mainNav: Item[] = [
   },
   { href: '/#reviews', label: 'Reviews' },
   { href: '/#faq', label: 'FAQ' },
+  { href: '/about/', label: 'About Us' },
+  { href: '/contact/', label: 'Contact Us' },
 ];

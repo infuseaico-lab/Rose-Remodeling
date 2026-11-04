@@ -1,0 +1,79 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import { site, promises, steps } from '../../data/site';
+const team = [
+  { name: 'Adir', role: 'Owner & Project Manager', text: 'Your single point of contact from the first visit to the final walkthrough, with daily updates along the way.' },
+  { name: 'Ignacio', role: 'Crew Chief', text: 'Runs the job site day to day and keeps the work clean, safe and on schedule.' },
+  { name: 'Max', role: 'Tile Specialist', text: 'Handles the tile work homeowners notice first: showers, backsplashes and floors.' },
+];
+---
+<SiteLayout title="About Us | Rose Remodeling & Design" description="Rose Remodeling & Design is a licensed, insured and bonded design-build remodeler in Sunnyvale serving the Bay Area. Meet Adir and the team.">
+  <PageHead title="About Rose Remodeling & Design" intro="A Sunnyvale design-build team for kitchens, baths, additions, ADUs and whole homes." crumbs={[{ href: '/', label: 'Home' }, { label: 'About Us' }]} />
+
+  <section class="section">
+    <div class="wrap about">
+      <div class="about__copy" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-house"/></svg>Who We Are</span>
+        <h2 class="h2">One Team From Design to Done</h2>
+        <p>Rose Remodeling &amp; Design is a licensed, insured and bonded general contractor based in Sunnyvale. We design, permit and build in-house, so you work with one team and one contract instead of juggling a designer, an architect and a builder.</p>
+        <p>Renovation shouldn’t be a gamble. We keep it predictable with honest communication, a written proposal and schedule before work starts, and daily updates from your project manager.</p>
+        <ul class="facts">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>{site.license} · insured &amp; bonded</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>Top 3 business in Sunnyvale · 2025</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Serving Sunnyvale &amp; the Bay Area</li>
+        </ul>
+      </div>
+      <figure class="about__media" data-reveal>
+        <img src="/img/portfolio/kitchen/kitchen-01.webp" width="1600" height="1067" alt="Kitchen remodel by Rose Remodeling & Design with a white waterfall island and oak cabinets" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--card">
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>The Team</span>
+        <h2 class="h2">The People Homeowners Mention by Name</h2>
+        <p>Names you’ll see again and again in our reviews.</p>
+      </header>
+      <ul class="team">
+        {team.map((t) => (
+          <li class="team__card" data-reveal>
+            <span class="team__avatar" aria-hidden="true">{t.name.charAt(0)}</span>
+            <h3 class="h3">{t.name}</h3>
+            <p class="team__role">{t.role}</p>
+            <p>{t.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Our Promise</span>
+        <h2 class="h2">What You Can Count On</h2>
+      </header>
+      <ul class="values">
+        {promises.map((p, i) => (
+          <li data-reveal><span class="values__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><div><h3 class="h3">{p.title}</h3><p>{p.text}</p></div></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section dark cta">
+    <div class="wrap cta__inner">
+      <div class="cta__copy">
+        <h2 class="h2">Let’s Talk About Your Home</h2>
+        <p>{steps[0].text}</p>
+      </div>
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/contact/">Contact Us <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline btn--lg" href={`tel:${site.phoneTel}`}><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

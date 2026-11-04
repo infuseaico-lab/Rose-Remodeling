@@ -1,0 +1,28 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import { site } from '../../data/site';
+const tel = `tel:${site.phoneTel}`;
+---
+<SiteLayout title="Contact Us | Rose Remodeling & Design" description="Contact Rose Remodeling & Design in Sunnyvale for a free in-home consultation. Call (510) 402-7165 or send us your project details.">
+  <PageHead title="Contact Us" intro="Tell us about your project and we’ll call you back to book a free in-home consultation." crumbs={[{ href: '/', label: 'Home' }, { label: 'Contact Us' }]} />
+
+  <section class="section">
+    <div class="wrap contact">
+      <div class="contact__info" data-reveal>
+        <h2 class="h2">Get in Touch</h2>
+        <ul class="contact__list">
+          <li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span><small>Call</small><a href={tel}>{site.phoneDisplay}</a></span></li>
+          <li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Email</small><a href={`mailto:${site.email}`}>{site.email}</a></span></li>
+          <li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span><span><small>Service area</small>Sunnyvale &amp; the Bay Area</span></li>
+          <li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg></span><span><small>License</small>{site.license} · insured &amp; bonded</span></li>
+        </ul>
+        <p class="contact__note">Free consultation · Detailed written proposal · No pressure</p>
+      </div>
+      <div class="contact__form" data-reveal>
+        <EstimateForm id="contact-form" message />
+      </div>
+    </div>
+  </section>
+</SiteLayout>
