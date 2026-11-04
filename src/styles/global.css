@@ -490,3 +490,4 @@ form small { color: var(--muted); font-size: .8125rem; }
   .foot__grid > div { flex: 0 0 auto; }
   .foot__grid > div:first-child { width: 300px; max-width: 100%; }
 }
+.score .stars { color: #FBBC04; }
