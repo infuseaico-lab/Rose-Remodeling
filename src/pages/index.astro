@@ -44,8 +44,12 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
           </ul>
         </div>
         <div class="hero__media">
-          <!-- TODO: replace with a real project photo (astro:assets <Image>, WebP). -->
-          <div class="ph" role="img" aria-label="Finished kitchen remodel"><span><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Project photo: kitchen</span></div>
+          <!-- Illustrations, crossfading. Swap for real project photos (astro:assets <Image>, WebP) when available. -->
+          <div class="slides" data-fade>
+            <img class="is-on" src="/img/kitchen.svg" width="800" height="1000" alt="Illustration of a modern kitchen with a white stone island, charcoal cabinets and brass pendant lights" fetchpriority="high" />
+            <img src="/img/bathroom.svg" width="800" height="1000" alt="Illustration of a modern bathroom with a floating oak double vanity, round brass mirrors and a glass walk-in shower" loading="lazy" />
+            <img src="/img/backyard.svg" width="800" height="1000" alt="Illustration of a backyard ADU with white stucco, oak siding and a glass slider, beside a lawn and paver path" loading="lazy" />
+          </div>
           <div class="score">
             <strong>{site.rating.value}</strong>
             <span><span class="stars" aria-hidden="true">★★★★★</span><br />Rated Excellent · {site.rating.count} Google reviews</span>
@@ -69,7 +73,9 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
         <ul class="svcs">
           {services.map((s, i) => (
             <li class="svc" data-reveal>
-              <div class={`ph${i % 2 ? ' ph--light' : ''}`} role="img" aria-label={`${s.name} project`}><span><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Photo: {s.name}</span></div>
+              {s.img
+                ? <img class="svc__img" src={s.img} style={`object-position: ${s.pos}`} width="800" height="1000" alt={`Illustration: ${s.name.toLowerCase()}`} loading="lazy" />
+                : <div class={`ph${i % 2 ? ' ph--light' : ''}`} role="img" aria-label={`${s.name} project`}><span><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Photo: {s.name}</span></div>}
               <h3 class="h3"><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg></span>{s.name}</h3>
               <p>{s.blurb}</p>
               <ul class="svc__list">{s.bullets.map((b) => <li>{b}</li>)}</ul>
@@ -263,6 +269,13 @@ const Logo = `<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"
       dock?.classList.toggle('is-on', visible.size === 0);
     });
     watched.forEach((el) => dio.observe(el));
+
+    // Hero crossfade
+    const slides = document.querySelectorAll('[data-fade] img');
+    if (slides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let n = 0;
+      setInterval(() => { slides[n].classList.remove('is-on'); n = (n + 1) % slides.length; slides[n].classList.add('is-on'); }, 5000);
+    }
 
     // No form endpoint configured: hand the request to the visitor's email app.
     const form = document.getElementById('estimate-form') as HTMLFormElement | null;

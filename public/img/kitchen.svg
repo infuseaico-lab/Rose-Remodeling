@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="k-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1EAE6"/><stop offset="1" stop-color="#E4D9D4"/></linearGradient>
+    <linearGradient id="k-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6D9CF"/><stop offset=".6" stop-color="#E9E3DC"/><stop offset="1" stop-color="#DCE4DA"/></linearGradient>
+    <linearGradient id="k-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDB39B"/><stop offset="1" stop-color="#B9997D"/></linearGradient>
+    <linearGradient id="k-stone" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#ECE7E4"/></linearGradient>
+    <linearGradient id="k-brass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B98F55"/><stop offset=".5" stop-color="#E2C48E"/><stop offset="1" stop-color="#A97F47"/></linearGradient>
+    <radialGradient id="k-glow" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#FFE9C9" stop-opacity=".75"/><stop offset="1" stop-color="#FFE9C9" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <!-- room -->
+  <rect width="800" height="1000" fill="url(#k-wall)"/>
+  <rect y="860" width="800" height="140" fill="url(#k-floor)"/>
+  <g stroke="#A88A70" stroke-opacity=".35" stroke-width="2"><path d="M0 900h800M0 945h800M120 860v40M380 860v40M640 860v40M250 900v45M520 900v45M60 945v55M330 945v55M600 945v55"/></g>
+
+  <!-- garden window -->
+  <rect x="456" y="150" width="288" height="372" rx="4" fill="#211D1E"/>
+  <rect x="468" y="162" width="264" height="348" fill="url(#k-sky)"/>
+  <path d="M468 420c40-30 80-40 120-28s90 6 144-20v138H468z" fill="#A9BCA4"/>
+  <path d="M468 455c50-22 110-18 160-6s70 0 104-14v75H468z" fill="#7F9A80"/>
+  <circle cx="530" cy="404" r="34" fill="#6E8B71"/><circle cx="560" cy="390" r="26" fill="#86A288"/>
+  <rect x="597" y="162" width="6" height="348" fill="#211D1E"/>
+  <rect x="468" y="330" width="264" height="6" fill="#211D1E"/>
+
+  <!-- hood and backsplash -->
+  <rect x="40" y="430" width="380" height="160" fill="#F7F3F1"/>
+  <g stroke="#E2D8D4" stroke-width="2"><path d="M40 470h380M40 510h380M40 550h380"/><path d="M95 430v40M190 430v40M285 430v40M380 430v40M142 470v40M237 470v40M332 470v40M95 510v40M190 510v40M285 510v40M380 510v40M142 550v40M237 550v40M332 550v40"/></g>
+  <path d="M150 230h160l26 160H124z" fill="#2B2627"/>
+  <rect x="118" y="388" width="224" height="14" rx="3" fill="url(#k-brass)"/>
+
+  <!-- back run of cabinets -->
+  <rect x="0" y="588" width="800" height="18" fill="url(#k-stone)"/>
+  <rect x="0" y="606" width="800" height="254" fill="#2B2627"/>
+  <g stroke="#3F3839" stroke-width="3"><path d="M100 606v254M200 606v254M300 606v254M400 606v254M500 606v254M600 606v254M700 606v254M0 690h800"/></g>
+  <g fill="url(#k-brass)"><rect x="40" y="640" width="24" height="4" rx="2"/><rect x="140" y="640" width="24" height="4" rx="2"/><rect x="240" y="640" width="24" height="4" rx="2"/><rect x="340" y="640" width="24" height="4" rx="2"/><rect x="540" y="640" width="24" height="4" rx="2"/><rect x="640" y="640" width="24" height="4" rx="2"/></g>
+  <!-- cooktop + faucet + vase on back counter -->
+  <rect x="160" y="582" width="140" height="6" rx="2" fill="#1A1718"/>
+  <path d="M560 588v-58q0-22 22-22h10q16 0 16 16v8" fill="none" stroke="url(#k-brass)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M690 588c-10-30-6-60 8-74 14 14 18 44 8 74z" fill="#E7B7AE"/>
+  <path d="M698 516c-6-40-30-70-52-80M700 516c4-44 22-74 44-86M699 516c0-46-6-80-16-100" fill="none" stroke="#6E8B71" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#7F9A80"><ellipse cx="648" cy="438" rx="14" ry="7" transform="rotate(-30 648 438)"/><ellipse cx="742" cy="432" rx="14" ry="7" transform="rotate(30 742 432)"/><ellipse cx="684" cy="418" rx="12" ry="6" transform="rotate(-70 684 418)"/></g>
+
+  <!-- pendants -->
+  <g stroke="#211D1E" stroke-width="2"><path d="M230 0v402M400 0v402M570 0v402"/></g>
+  <g>
+    <ellipse cx="230" cy="470" rx="150" ry="120" fill="url(#k-glow)"/>
+    <ellipse cx="400" cy="470" rx="150" ry="120" fill="url(#k-glow)"/>
+    <ellipse cx="570" cy="470" rx="150" ry="120" fill="url(#k-glow)"/>
+  </g>
+  <g fill="url(#k-brass)"><path d="M190 446a40 44 0 0 1 80 0z"/><path d="M360 446a40 44 0 0 1 80 0z"/><path d="M530 446a40 44 0 0 1 80 0z"/></g>
+  <g fill="#FFF3DD"><ellipse cx="230" cy="447" rx="40" ry="5"/><ellipse cx="400" cy="447" rx="40" ry="5"/><ellipse cx="570" cy="447" rx="40" ry="5"/></g>
+
+  <!-- island: white waterfall stone with oak front -->
+  <ellipse cx="400" cy="935" rx="330" ry="22" fill="#000" opacity=".12"/>
+  <rect x="150" y="700" width="500" height="230" fill="#B88D66"/>
+  <g stroke="#9E7553" stroke-width="3"><path d="M190 712v218M230 712v218M270 712v218M310 712v218M350 712v218M390 712v218M430 712v218M470 712v218M510 712v218M550 712v218M590 712v218"/></g>
+  <rect x="120" y="680" width="560" height="26" fill="url(#k-stone)"/>
+  <rect x="120" y="680" width="30" height="250" fill="url(#k-stone)"/>
+  <rect x="650" y="680" width="30" height="250" fill="url(#k-stone)"/>
+  <path d="M160 690c80 6 140-4 220 2s170 2 260-4" fill="none" stroke="#D9D0CC" stroke-width="2"/>
+  <path d="M128 700c6 60-4 120 4 180M662 720c-6 50 4 110-4 190" fill="none" stroke="#D9D0CC" stroke-width="2"/>
+
+  <!-- on the island: bowl and cutting board -->
+  <path d="M300 680a46 22 0 0 0 92 0z" fill="#F7F3F1" stroke="#D9D0CC" stroke-width="2"/>
+  <circle cx="330" cy="670" r="12" fill="#E7B7AE"/><circle cx="352" cy="666" r="12" fill="#D79A8F"/><circle cx="342" cy="656" r="10" fill="#A9BCA4"/>
+  <rect x="460" y="672" width="110" height="8" rx="3" fill="#C9A27A"/>
+
+  <!-- stools -->
+  <g>
+    <path d="M220 800h80" stroke="#211D1E" stroke-width="4"/><path d="M236 796l-12 134M284 796l12 134M228 870h64" stroke="#211D1E" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <rect x="212" y="780" width="96" height="22" rx="11" fill="#E7B7AE"/>
+    <path d="M370 800h80" stroke="#211D1E" stroke-width="4"/><path d="M386 796l-12 134M434 796l12 134M378 870h64" stroke="#211D1E" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <rect x="362" y="780" width="96" height="22" rx="11" fill="#E7B7AE"/>
+    <path d="M520 800h80" stroke="#211D1E" stroke-width="4"/><path d="M536 796l-12 134M584 796l12 134M528 870h64" stroke="#211D1E" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <rect x="512" y="780" width="96" height="22" rx="11" fill="#E7B7AE"/>
+  </g>
+</svg>
