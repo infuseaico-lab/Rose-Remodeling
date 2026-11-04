@@ -491,3 +491,14 @@ form small { color: var(--muted); font-size: .8125rem; }
   .foot__grid > div:first-child { width: 300px; max-width: 100%; }
 }
 .score .stars { color: #FBBC04; }
+/* hero headline: three lines on desktop */
+@media (min-width: 56em) { .hero__inner { grid-template-columns: minmax(0, 1.9fr) minmax(0, .6fr); gap: 40px; } .hero__title { font-size: clamp(2.75rem, 1.6rem + 2.9vw, 4rem); max-width: 19ch; } }
+/* tighter vertical rhythm between sections */
+:root { --section: clamp(44px, 5.5vw, 72px); }
+.head { margin-bottom: clamp(24px, 3vw, 36px); }
+#services { padding-block: var(--section); }
+.badges { padding-block: 22px; }
+/* promise backdrop: sharp real project photo, shaded for legibility */
+.promise__bg { filter: none; transform: none; object-position: 50% 55%; }
+.promise::before { background: linear-gradient(180deg, rgb(28 25 26 / .84), rgb(28 25 26 / .72) 50%, rgb(28 25 26 / .86)); }
+@media (min-width: 56em) { .hero__inner { grid-template-columns: minmax(0, 1fr) auto; } }
