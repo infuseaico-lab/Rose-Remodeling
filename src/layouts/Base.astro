@@ -13,7 +13,7 @@ const schema = {
   url: site.url,
   telephone: site.phoneTel,
   email: site.email,
-  image: `${site.url}/favicon.svg`,
+  image: `${site.url}/img/logo.webp`,
   address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'US' },
   areaServed: site.areaServed.map((name) => ({ '@type': 'City', name })),
   hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'license', name: `California Contractor License #${site.licenseNumber}` },
@@ -28,7 +28,8 @@ const schema = {
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -36,7 +37,7 @@ const schema = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Google+Sans+Flex:wght@400;500;600&display=swap" rel="stylesheet" />
-  <meta name="theme-color" content="#1C191A" />
+  <meta name="theme-color" content="#70234D" />
   <script is:inline>document.documentElement.classList.add("js")</script>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </head>
