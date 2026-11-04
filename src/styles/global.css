@@ -475,6 +475,6 @@ form small { color: var(--muted); font-size: .8125rem; }
 /* footer in logo purple; logo with its purple shown as white, no plate */
 .foot { background: var(--accent); color: #F3E6EE; border-top: 0; }
 .foot .brand { padding: 0; background: none; border-radius: 0; margin-bottom: 10px; }
-.foot .brand img { height: clamp(64px, 6vw, 84px); }
+.foot .brand img { height: clamp(80px, 8vw, 112px); }
 .foot__head { color: #fff; }
 .foot__legal { border-top-color: rgb(255 255 255 / .2); color: #EAD7E2; }
