@@ -266,3 +266,14 @@ form small { color: var(--muted); font-size: .8125rem; }
 .svc > :not(.ph):not(.svc__img) { margin-inline: 16px; }
 .svc .ph, .svc__img { aspect-ratio: 16 / 9; margin-bottom: 4px; }
 .svc__list { gap: 2px; padding-top: 8px; }
+
+/* "Find us on" logo strip */
+.badges { background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 22px; }
+.badges__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.badges__title { font: 600 .75rem/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.badges__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px clamp(20px, 4vw, 48px); flex: 1; }
+.badges__list img { height: 44px; width: auto; transition: transform .25s var(--ease); }
+.badges__list img.is-word { height: 26px; }
+.badges__list img.is-angi { height: 36px; }
+.badges__list li:hover img { transform: translateY(-2px); }
+@media (max-width: 40em) { .badges__inner { flex-direction: column; } .badges__list img { height: 36px; } .badges__list img.is-word { height: 22px; } .badges__list img.is-angi { height: 30px; } }
