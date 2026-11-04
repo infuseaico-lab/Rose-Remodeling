@@ -88,7 +88,12 @@ const tel = `tel:${site.phoneTel}`;
     </section>
 
     <section class="section promise" id="promise" aria-labelledby="promise-title">
-      <img class="promise__bg" src="/img/portfolio/kitchen/kitchen-02.webp" alt="" aria-hidden="true" loading="lazy" />
+      <!-- AI-generated backdrops (OpenAI gpt-image-2), decorative only -->
+      <div class="promise__slides" data-promise-slides aria-hidden="true">
+        <img class="promise__bg is-on" src="/img/promise-1-1536.webp" srcset="/img/promise-1-800.webp 800w, /img/promise-1-1536.webp 1536w" sizes="100vw" alt="" loading="lazy" />
+        <img class="promise__bg" src="/img/promise-2-1536.webp" srcset="/img/promise-2-800.webp 800w, /img/promise-2-1536.webp 1536w" sizes="100vw" alt="" loading="lazy" />
+        <img class="promise__bg" src="/img/promise-3-1536.webp" srcset="/img/promise-3-800.webp 800w, /img/promise-3-1536.webp 1536w" sizes="100vw" alt="" loading="lazy" />
+      </div>
       <div class="wrap">
         <header class="head head--center" data-reveal>
           <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Our Promise</span>
@@ -280,6 +285,13 @@ const tel = `tel:${site.phoneTel}`;
     if (heroSlides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       let h = 0;
       setInterval(() => { heroSlides[h].classList.remove('is-on'); h = (h + 1) % heroSlides.length; heroSlides[h].classList.add('is-on'); }, 6000);
+    }
+
+    // Our Promise backdrop: slow crossfade
+    const pSlides = document.querySelectorAll('[data-promise-slides] img');
+    if (pSlides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let q = 0;
+      setInterval(() => { pSlides[q].classList.remove('is-on'); q = (q + 1) % pSlides.length; pSlides[q].classList.add('is-on'); }, 7000);
     }
 
     // Reviews: filter by site, and arrow buttons scroll the row.

@@ -503,3 +503,6 @@ form small { color: var(--muted); font-size: .8125rem; }
 .promise::before { background: linear-gradient(180deg, rgb(28 25 26 / .84), rgb(28 25 26 / .72) 50%, rgb(28 25 26 / .86)); }
 @media (min-width: 56em) { .hero__inner { grid-template-columns: minmax(0, 1fr) auto; } }
 @media (min-width: 56em) and (max-width: 74.99em) { .hero__inner { grid-template-columns: minmax(0, 1fr); } .hero__media { justify-content: flex-start; } }
+.promise__slides { position: absolute; inset: 0; z-index: -2; }
+.promise__slides .promise__bg { opacity: 0; transition: opacity 1.6s ease; object-position: 50% 50%; }
+.promise__slides .promise__bg.is-on { opacity: 1; }
