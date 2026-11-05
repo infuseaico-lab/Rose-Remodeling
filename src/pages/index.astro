@@ -91,6 +91,27 @@ const showBadges = false;
       </div>
     </section>
 
+    <section class="section section--card" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="head" data-reveal>
+          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Project Videos</span>
+          <h2 class="h2" id="work-title">See Our Work</h2>
+          <p>Walk through recent remodels around the Bay Area.</p>
+        </header>
+        <div class="videos">
+          {videos.map((v, i) => (
+            <figure class={`video${i === 0 ? ' video--lead' : ''}`} data-reveal>
+              <div class="video__frame">
+                <iframe src={`https://player.vimeo.com/video/${v.id}?badge=0&autopause=0&player_id=0&app_id=58479`} title={`${v.title}, ${v.place}`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <figcaption><strong>{v.title}</strong><span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>{v.place}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="video__more"><a class="link" href="/portfolio/videos/">See all project videos <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      </div>
+    </section>
+
     <section class="section promise" id="promise" aria-labelledby="promise-title">
       <!-- AI-generated backdrops (OpenAI gpt-image-2), decorative only -->
       <div class="promise__slides" data-promise-slides aria-hidden="true">
@@ -116,27 +137,6 @@ const showBadges = false;
           ))}
         </ol>
         <div class="promise__cta"><a class="btn btn--accent btn--lg" href="/#estimate">Get Started Today <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-      </div>
-    </section>
-
-    <section class="section section--card" id="work" aria-labelledby="work-title">
-      <div class="wrap">
-        <header class="head" data-reveal>
-          <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Project Videos</span>
-          <h2 class="h2" id="work-title">See Our Work</h2>
-          <p>Walk through recent remodels around the Bay Area.</p>
-        </header>
-        <div class="videos">
-          {videos.map((v, i) => (
-            <figure class={`video${i === 0 ? ' video--lead' : ''}`} data-reveal>
-              <div class="video__frame">
-                <iframe src={`https://player.vimeo.com/video/${v.id}?badge=0&autopause=0&player_id=0&app_id=58479`} title={`${v.title}, ${v.place}`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
-              <figcaption><strong>{v.title}</strong><span><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>{v.place}</span></figcaption>
-            </figure>
-          ))}
-        </div>
-        <p class="video__more"><a class="link" href="/portfolio/videos/">See all project videos <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </section>
 
