@@ -148,9 +148,9 @@ const tel = `tel:${site.phoneTel}`;
           <p class="award__kicker">Congratulations!</p>
           <h2 class="h2" id="award-title">A Top 3 Business in Sunnyvale</h2>
           <p>Rose Remodeling &amp; Design was named a Top 3 construction company in Sunnyvale by BusinessRate, based on our Google reviews. Thank you to every homeowner who trusted us with their home.</p>
-          <p class="award__meta"><img src="/img/badges/google.png" width="85" height="86" alt="" aria-hidden="true" /> Google Reviews <span class="award__dot" aria-hidden="true"></span> July 2025</p>
+          <p class="award__meta"><img src="/img/badges/google.png" width="85" height="86" alt="" aria-hidden="true" /> <a href={site.googleReviews} target="_blank" rel="noopener">Google Reviews</a> <span class="award__dot" aria-hidden="true"></span> July 2025</p>
           <div class="award__actions">
-            <a class="btn btn--dark" href="#reviews">Read Our Reviews <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--dark" href={site.googleReviews} target="_blank" rel="noopener" aria-label="Read our reviews on Google (opens in a new tab)">Read Our Reviews <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="link" href="/#estimate">Get a free estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>

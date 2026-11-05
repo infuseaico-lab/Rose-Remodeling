@@ -15,6 +15,7 @@ export const site = {
   rating: { value: '5.0', count: 50 },
   // Set to a form endpoint (Formspree, Netlify, etc.). Empty = opens the visitor's email app.
   formAction: '',
+  googleReviews: 'https://maps.app.goo.gl/8rd9MZ3EK2LxZFhx6',
 };
 
 // `img`: AI-generated stand-ins (OpenAI gpt-image-2). `real`: a Rose project photo, used instead when present.
