@@ -10,8 +10,8 @@ export const site = {
   licenseNumber: '1103851',
   city: 'Sunnyvale',
   region: 'CA',
-  // TODO: confirm the real service-area list with the owner.
-  areaServed: ['Sunnyvale', 'San Jose', 'Santa Clara', 'Mountain View', 'Palo Alto', 'Burlingame', 'Newark', 'Pleasanton'],
+  // Service-area cities (Sunnyvale first, then A–Z).
+  areaServed: ['Sunnyvale', 'Atherton', 'Belmont', 'Burlingame', 'Campbell', 'Cupertino', 'Hillsborough', 'Los Altos', 'Los Altos Hills', 'Los Gatos', 'Menlo Park', 'Monte Sereno', 'Mountain View', 'Newark', 'Palo Alto', 'Pleasanton', 'San Bruno', 'San Carlos', 'San Jose', 'San Mateo', 'Santa Clara', 'Saratoga', 'Woodside'],
   rating: { value: '5.0', count: 50 },
   // Set to a form endpoint (Formspree, Netlify, etc.). Empty = opens the visitor's email app.
   formAction: '',
