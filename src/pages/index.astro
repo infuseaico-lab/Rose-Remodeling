@@ -177,7 +177,7 @@ const showBadges = false;
               <span class={`plogo plogo--${pf.key}`}>
                 {pf.key === 'google' && <img src="/img/badges/google-48.webp" width="48" height="48" alt="" />}
                 {pf.key === 'thumbtack' && <img src="/img/badges/thumbtack-48.webp" width="48" height="48" alt="" />}
-                <span>{pf.name}</span>
+                {pf.key === 'yelp' ? <img class="plogo__word" src="/img/badges/yelp-white.webp" width="288" height="110" alt="Yelp" /> : <span>{pf.name}</span>}
               </span>
               <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
               <span class="platform__meta"><strong>{pf.label}</strong>{pf.count ? ` · ${pf.count} reviews` : ''}</span>

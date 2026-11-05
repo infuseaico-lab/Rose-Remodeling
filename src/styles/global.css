@@ -731,3 +731,4 @@ details[open] p { animation: faqIn .45s var(--ease); }
 .pagehead__bg, .cta__bg { top: -12%; bottom: auto; height: 124%; }
 .cta--img .cta__bg, .pagehead--img .pagehead__bg { top: -12%; bottom: auto; height: 124%; }
 #reviews.cta--img::before { background: rgb(28 25 26 / .84); }
+.plogo img.plogo__word { width: auto; height: 26px; }
