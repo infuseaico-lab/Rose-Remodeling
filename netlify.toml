@@ -1,0 +1,13 @@
+# Netlify build settings for the agency preview at https://infusedev.online/projects/rose-remodeling/
+# For the final launch on roseremodelinganddesign.com, delete the three preview variables below
+# (or set them in the Netlify UI) so the site builds at the domain root and is indexable.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  SITE_URL = "https://infusedev.online"
+  BASE_PATH = "/projects/rose-remodeling"
+  NOINDEX = "true"
+  FORMS = "netlify"

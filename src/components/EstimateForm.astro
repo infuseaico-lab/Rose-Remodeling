@@ -2,9 +2,14 @@
 import { site, services } from '../data/site';
 interface Props { message?: boolean; id?: string; selected?: string }
 const { id = 'estimate-form', selected } = Astro.props;
+// FORMS=netlify: submissions go to Netlify Forms (set up email notifications in the Netlify UI).
+const netlify = process.env.FORMS === 'netlify';
+const action = netlify ? '/thank-you/' : site.formAction || undefined;
 const timelines = ['ASAP', '1–3 months', '3–6 months', '6+ months', 'Just exploring'];
 ---
-<form id={id} class="estimate-form" method="post" action={site.formAction || undefined} data-email={site.email}>
+<form id={id} class="estimate-form" name="estimate" method="post" action={action} data-email={site.email} data-netlify={netlify ? "true" : undefined} netlify-honeypot={netlify ? "bot-field" : undefined}>
+  {netlify && <input type="hidden" name="form-name" value="estimate" />}
+  {netlify && <p hidden><label>Leave this empty<input name="bot-field" /></label></p>}
   <div class="row">
     <label>Your Name<input type="text" name="name" autocomplete="name" required /></label>
     <label>Phone Number<input type="tel" name="phone" autocomplete="tel" required /></label>

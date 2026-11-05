@@ -16,7 +16,7 @@ const realPhotos = g && g.photos.length > 0;
 const hero = realPhotos ? { src: shots[1].src, alt: shots[1].alt } : { src: `${s.img}-1536.webp`, alt: `${s.name}: representative photo` };
 const others = servicePages.filter((x) => x.slug !== s.slug);
 const tel = `tel:${site.phoneTel}`;
-const serviceLd = { '@context': 'https://schema.org', '@type': 'Service', name: s.name, serviceType: s.name, description: s.intro, url: new URL(`/services/${s.slug}/`, Astro.site).href, provider: { '@id': `${site.url}/#business` }, areaServed: site.areaServed.map((c) => ({ '@type': 'City', name: `${c}, CA` })), hasOfferCatalog: { '@type': 'OfferCatalog', name: `${s.name} services`, itemListElement: s.includes.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i } })) } };
+const serviceLd = { '@context': 'https://schema.org', '@type': 'Service', name: s.name, serviceType: s.name, description: s.intro, url: new URL(`${import.meta.env.BASE_URL.replace(/\/$/, '')}/services/${s.slug}/`, Astro.site).href, provider: { '@id': `${site.url}/#business` }, areaServed: site.areaServed.map((c) => ({ '@type': 'City', name: `${c}, CA` })), hasOfferCatalog: { '@type': 'OfferCatalog', name: `${s.name} services`, itemListElement: s.includes.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i } })) } };
 // Header image: real gallery photos are single 1600px files; the others have -800/-1536 sizes.
 const headImage = realPhotos ? { src: shots[0].src } : s.head.includes('/portfolio/') ? { src: `${s.head}.webp` } : { src: `${s.head}-1536.webp`, srcset: `${s.head}-800.webp 800w, ${s.head}-1536.webp 1536w` };
 ---

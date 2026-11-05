@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import { site } from '../../data/site';
+---
+<SiteLayout title="Thank You | Rose Remodeling & Design" description="Thanks for your request. Rose Remodeling & Design will call you back shortly." noindex>
+  <PageHead image={{ src: '/img/portfolio/kitchen/kitchen-remodel-white-quartz-island-oak-cabinets-01.webp' }} title="Thank You!" intro="We received your request. Adir will call you back shortly to talk through your project and book a free in-home consultation." crumbs={[{ href: '/', label: 'Home' }, { label: 'Thank You' }]}>
+    <div class="hero__actions">
+      <a class="btn btn--accent btn--lg" href="/portfolio/">See Our Work</a>
+      <a class="btn btn--outline btn--lg" href={`tel:${site.phoneTel}`}>Call {site.phoneDisplay}</a>
+    </div>
+  </PageHead>
+</SiteLayout>

@@ -13,9 +13,12 @@ interface Props {
   preload?: { src: string; srcset?: string; sizes?: string };
   noindex?: boolean;
 }
-const { title, description, image = '/img/og-default.jpg', schema = [], preload, noindex = false } = Astro.props;
+const { title, description, image = '/img/og-default.jpg', schema = [], preload, noindex: noindexProp = false } = Astro.props;
+// Preview deploys (NOINDEX=true) are hidden from search engines so they never compete with the real domain.
+const noindex = noindexProp || process.env.NOINDEX === 'true';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL(image, Astro.site).href;
+const ogImage = new URL(baseUrl + image, Astro.site).href;
 
 const business = {
   '@context': 'https://schema.org',
@@ -45,7 +48,7 @@ const ld = [business, ...schema];
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+  {noindex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Google+Sans+Flex:wght@400;500;600&display=swap" rel="stylesheet" />

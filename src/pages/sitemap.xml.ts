@@ -8,7 +8,7 @@ import { galleries } from '../data/galleries';
 export const GET: APIRoute = ({ site }) => {
   const paths = new Set<string>(['/']);
   for (const file of Object.keys(pages)) {
-    if (file.includes('[') || file.endsWith('404.astro')) continue;
+    if (file.includes('[') || file.endsWith('404.astro') || file.includes('thank-you')) continue;
     const p = file.replace(/^\.\//, '/').replace(/index\.astro$/, '').replace(/\.astro$/, '/');
     paths.add(p);
   }
@@ -16,6 +16,6 @@ export const GET: APIRoute = ({ site }) => {
   galleries.forEach((g) => paths.add(`/portfolio/photo-galleries/${g.slug}/`));
   const today = new Date().toISOString().slice(0, 10);
   const prio = (p: string) => (p === '/' ? '1.0' : p.startsWith('/services/') ? '0.9' : p === '/free-estimate/' || p === '/contact/' ? '0.8' : '0.7');
-  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...paths].sort().map((p) => `  <url><loc>${new URL(p, site).href}</loc><lastmod>${today}</lastmod><priority>${prio(p)}</priority></url>`).join('\n')}\n</urlset>\n`;
+  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...paths].sort().map((p) => `  <url><loc>${new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + p, site).href}</loc><lastmod>${today}</lastmod><priority>${prio(p)}</priority></url>`).join('\n')}\n</urlset>\n`;
   return new Response(body, { headers: { 'Content-Type': 'application/xml' } });
 };
