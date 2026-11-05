@@ -732,3 +732,9 @@ details[open] p { animation: faqIn .45s var(--ease); }
 .cta--img .cta__bg, .pagehead--img .pagehead__bg { top: -12%; bottom: auto; height: 124%; }
 #reviews.cta--img::before { background: rgb(28 25 26 / .84); }
 .plogo img.plogo__word { width: auto; height: 26px; }
+/* About intro: photo spans the full height of the text column */
+@media (min-width: 56em) {
+  .about { align-items: stretch; }
+  .about__media { display: flex; margin: 0; }
+  .about__media img { aspect-ratio: auto; height: 100%; min-height: 420px; object-fit: cover; object-position: 50% 40%; }
+}
