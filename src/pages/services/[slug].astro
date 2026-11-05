@@ -16,10 +16,11 @@ const realPhotos = g && g.photos.length > 0;
 const hero = realPhotos ? { src: shots[1].src, alt: shots[1].alt } : { src: `${s.img}-1536.webp`, alt: `${s.name}: representative photo` };
 const others = servicePages.filter((x) => x.slug !== s.slug);
 const tel = `tel:${site.phoneTel}`;
+const serviceLd = { '@context': 'https://schema.org', '@type': 'Service', name: s.name, serviceType: s.name, description: s.intro, url: new URL(`/services/${s.slug}/`, Astro.site).href, provider: { '@id': `${site.url}/#business` }, areaServed: site.areaServed.map((c) => ({ '@type': 'City', name: `${c}, CA` })), hasOfferCatalog: { '@type': 'OfferCatalog', name: `${s.name} services`, itemListElement: s.includes.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i } })) } };
 // Header image: real gallery photos are single 1600px files; the others have -800/-1536 sizes.
 const headImage = realPhotos ? { src: shots[0].src } : s.head.includes('/portfolio/') ? { src: `${s.head}.webp` } : { src: `${s.head}-1536.webp`, srcset: `${s.head}-800.webp 800w, ${s.head}-1536.webp 1536w` };
 ---
-<SiteLayout title={`${s.title} | Rose Remodeling & Design`} description={`${s.intro} Licensed, insured and bonded. Free in-home consultation: ${site.phoneDisplay}.`}>
+<SiteLayout title={`${s.name} in Sunnyvale, CA | Rose Remodeling`} description={`${s.intro.split('. ')[0]}. Licensed Bay Area design-build team. Free in-home consultation: ${site.phoneDisplay}.`.slice(0, 158)} image={headImage.src} schema={[serviceLd]}>
   <PageHead title={s.name} titleSub={s.title.slice(s.name.length + 1)} intro={s.intro} image={headImage} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]}>
     <div class="hero__actions">
       <a class="btn btn--accent btn--lg" href="#quote">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>

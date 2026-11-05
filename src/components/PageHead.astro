@@ -2,9 +2,14 @@
 // Dark title band for inner pages, with breadcrumb.
 interface Props { title: string; intro?: string; crumbs: { href?: string; label: string }[]; image?: { src: string; srcset?: string }; titleSub?: string }
 const { title, intro, crumbs, image, titleSub } = Astro.props;
+// Gallery photos have an -800 version: serve it to phones.
+const m = image && !image.srcset ? image.src.match(/^(\/img\/portfolio\/[a-z-]+\/[a-z0-9-]+)\.webp$/) : null;
+const img = image && m ? { src: image.src, srcset: `${m[1]}-800.webp 800w, ${image.src} 1600w` } : image;
+const crumbLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: new URL(c.href ?? Astro.url.pathname, Astro.site).href })) };
 ---
-<section class:list={["pagehead", { "pagehead--img": image }]}>
-  {image && <img class="pagehead__bg" src={image.src} srcset={image.srcset} sizes={image.srcset ? "100vw" : undefined} alt="" aria-hidden="true" fetchpriority="high" />}
+<section class:list={["pagehead", { "pagehead--img": img }]}>
+  {img && <img class="pagehead__bg" src={img.src} srcset={img.srcset} sizes={img.srcset ? "100vw" : undefined} width="1600" height="1067" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />}
+  <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />
   <div class="wrap pagehead__inner">
     <nav aria-label="Breadcrumb">
       <ol class="crumbs">

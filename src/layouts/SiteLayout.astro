@@ -5,20 +5,21 @@ import { site, services } from '../data/site';
 import { mainNav } from '../data/nav';
 import { serviceHref } from '../data/servicePages';
 
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; image?: string; schema?: object[]; preload?: { src: string; srcset?: string; sizes?: string }; crumbs?: { href?: string; label: string }[]; noindex?: boolean }
+const { title, description, image, schema = [], preload, crumbs, noindex } = Astro.props;
+const crumbLd = crumbs && crumbs.length > 1 ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, ...(c.href || i === crumbs.length - 1 ? { item: new URL(c.href ?? Astro.url.pathname, Astro.site).href } : {}) })) }] : [];
 const tel = `tel:${site.phoneTel}`;
 const year = new Date().getFullYear();
 const here = Astro.url.pathname;
 const flat = mainNav.flatMap((i) => ('items' in i ? [{ href: i.items[0].href, label: i.label }] : [i]));
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} image={image} schema={[...crumbLd, ...schema]} preload={preload} noindex={noindex}>
   <Icons />
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="bar">
     <div class="bar__inner">
-      <a class="brand" href="/" aria-label="Rose Remodeling & Design, home"><img src="/img/logo.webp" width="720" height="222" alt="Rose Remodeling & Design" fetchpriority="high" /></a>
+      <a class="brand" href="/" aria-label="Rose Remodeling & Design, home"><img src="/img/logo-360.webp" srcset="/img/logo-360.webp 360w, /img/logo-468.webp 468w, /img/logo.webp 720w" sizes="234px" width="720" height="222" alt="Rose Remodeling & Design" fetchpriority="high" /></a>
       <nav class="bar__nav" id="site-nav" aria-label="Main">
         {mainNav.map((item) => 'items' in item ? (
           <div class="nav-group" data-nav-group>
@@ -42,7 +43,7 @@ const flat = mainNav.flatMap((i) => ('items' in i ? [{ href: i.items[0].href, la
   <footer class="foot">
     <div class="wrap foot__grid">
       <div>
-        <a class="brand" href="/" aria-label="Rose Remodeling & Design, home"><img src="/img/logo-footer.webp" width="1100" height="340" alt="Rose Remodeling & Design" loading="lazy" /></a>
+        <a class="brand" href="/" aria-label="Rose Remodeling & Design, home"><img src="/img/logo-footer-600.webp" srcset="/img/logo-footer-600.webp 600w, /img/logo-footer.webp 1100w" sizes="300px" width="1100" height="340" alt="Rose Remodeling & Design" loading="lazy" /></a>
         <p>Design-build remodeling for Sunnyvale and Bay Area homes. Licensed, insured and bonded.</p>
       </div>
       <div>
