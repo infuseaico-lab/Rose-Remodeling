@@ -4,13 +4,13 @@ import PageHead from '../../components/PageHead.astro';
 import { servicePages } from '../../data/servicePages';
 ---
 <SiteLayout title="Remodeling Services in Sunnyvale & Bay Area | Rose Remodeling" description="Kitchen and bathroom remodeling, full home remodels, ADUs, room additions and new home construction by a licensed Sunnyvale design-build team.">
-  <PageHead image={{ src: "/img/portfolio/full-house/full-house-03.webp" }} title="Our Services" intro="One design-build team and one contract, from a single bathroom to a new home." crumbs={[{ href: '/', label: 'Home' }, { label: 'Services' }]} />
+  <PageHead image={{ src: "/img/portfolio/full-house/full-house-remodel-two-tone-cabinets-stainless-appliances-03.webp" }} title="Our Services" intro="One design-build team and one contract, from a single bathroom to a new home." crumbs={[{ href: '/', label: 'Home' }, { label: 'Services' }]} />
   <section class="section">
     <div class="wrap">
       <ul class="svcs">
         {servicePages.map((s) => (
           <li class="svc" data-reveal>
-            <a href={`/services/${s.slug}/`} tabindex="-1" aria-hidden="true"><img class="svc__img" src={`${s.real ?? s.img}-800.webp`} srcset={s.real ? `${s.real}-800.webp 800w, ${s.real}.webp 1600w` : `${s.img}-800.webp 800w, ${s.img}-1536.webp 1536w`} sizes="(min-width: 40em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" /></a>
+            <a href={`/services/${s.slug}/`} tabindex="-1" aria-hidden="true"><img class="svc__img" src={`${s.real ?? s.img}-800.webp`} srcset={s.real ? `${s.real}-800.webp 800w, ${s.real}.webp 1600w` : `${s.img}-800.webp 800w, ${s.img}-1536.webp 1536w`} sizes="(min-width: 40em) 50vw, 100vw" width="1536" height="1024" alt={s.real ? `${s.name} project by Rose Remodeling & Design` : `${s.name}: representative photo`} loading="lazy" /></a>
             <h3 class="h3"><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg></span><a href={`/services/${s.slug}/`} class="svc__title">{s.name}</a></h3>
             <p>{s.blurb}</p>
             <ul class="svc__list">{s.bullets.map((b) => <li>{b}</li>)}</ul>

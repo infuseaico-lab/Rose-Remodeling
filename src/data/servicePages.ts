@@ -7,7 +7,7 @@ type Extra = { slug: string; title: string; intro: string; includes: string[]; g
 const extra: Record<string, Extra> = {
   'Kitchen Remodeling': {
     slug: 'kitchen-remodeling',
-    head: '/img/portfolio/kitchen/kitchen-01',
+    head: '/img/portfolio/kitchen/kitchen-remodel-white-quartz-island-oak-cabinets-01',
     title: 'Kitchen Remodeling in Sunnyvale & the Bay Area',
     intro: 'A kitchen that fits how your family cooks, gathers and stores things. We plan the layout with you, show it in 3D, handle permits and build it with one crew and one project manager.',
     includes: ['Layout & 3D design', 'Custom cabinetry', 'Quartz & stone counters', 'Islands & pantries', 'Plumbing & electrical', 'Lighting & appliances', 'Flooring & backsplash', 'Permits & inspections'],
