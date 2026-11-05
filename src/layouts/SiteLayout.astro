@@ -99,11 +99,88 @@ const flat = mainNav.flatMap((i) => ('items' in i ? [{ href: i.items[0].href, la
       group.addEventListener('focusout', (e) => { if (!group.contains(e.relatedTarget as Node)) set(false); });
     });
 
-    // Reveal on scroll
+    // ---- Motion ----
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll reveal. Grid children get a staggered delay; images inside reveal blocks zoom in slightly.
+    const revealSel = '.head, .svc, .step, .promise__card, .vp, .gcard, .platform, .quote, .values li, .team__card, .shots li, .pgrid li, .areas li, .about__media, .award__media, .contact__form, .faq details, .incl li, .video, .perks li';
+    document.querySelectorAll<HTMLElement>(revealSel).forEach((el) => { if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', ''); });
+    document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+      const sibs = el.parentElement ? [...el.parentElement.children].filter((c) => c.hasAttribute('data-reveal')) : [];
+      const i = sibs.indexOf(el);
+      if (sibs.length > 1 && i > 0) el.style.setProperty('--d', `${Math.min(i, 8) * 70}ms`);
+    });
     const io = new IntersectionObserver((entries) => entries.forEach((en) => {
       if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
     }), { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+    // Headline: split into words that rise in on load.
+    document.querySelectorAll<HTMLElement>('.hero__title, .pagehead__title').forEach((h) => {
+      if (reduce) return;
+      let n = 0;
+      const wrap = (node: Node) => {
+        [...node.childNodes].forEach((c) => {
+          if (c.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            (c.textContent || '').split(/(\s+)/).forEach((w) => {
+              if (!w) return;
+              if (/^\s+$/.test(w)) { frag.append(w); return; }
+              const s = document.createElement('span'); s.className = 'word'; s.style.setProperty('--w', String(n++));
+              const inner = document.createElement('span'); inner.textContent = w; s.append(inner); frag.append(s);
+            });
+            c.replaceWith(frag);
+          } else if (c.nodeType === 1) wrap(c);
+        });
+      };
+      wrap(h); h.classList.add('words');
+    });
+    requestAnimationFrame(() => document.documentElement.classList.add('is-loaded'));
+
+    // Count-up numbers (e.g. 5.0, 50, 100+) when they scroll into view.
+    const counters = document.querySelectorAll<HTMLElement>('.score strong, .platform__meta strong, .step__num, .promise__num, .values__num');
+    const cio = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (!en.isIntersecting) return; cio.unobserve(en.target);
+      const el = en.target as HTMLElement; const txt = el.textContent || '';
+      const m = txt.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/); if (!m || reduce) return;
+      const [, pre, num, post] = m; const end = parseFloat(num); const dec = (num.split('.')[1] || '').length; const pad = num.length;
+      const t0 = performance.now(), dur = 1100;
+      const tick = (t: number) => {
+        const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        let v = (end * e).toFixed(dec); if (!dec && num.startsWith('0')) v = v.padStart(pad, '0');
+        el.textContent = pre + v + post; if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }), { threshold: .6 });
+    counters.forEach((c) => cio.observe(c));
+
+    // Header shrinks and gains a shadow after scrolling; a thin purple progress bar tracks the page.
+    const bar = document.querySelector<HTMLElement>('.bar');
+    const prog = document.createElement('div'); prog.className = 'scroll-progress'; prog.setAttribute('aria-hidden', 'true'); document.body.append(prog);
+    let ticking = false;
+    const onScroll = () => {
+      ticking = false; const y = scrollY;
+      bar?.classList.toggle('is-scrolled', y > 24);
+      const h = document.documentElement.scrollHeight - innerHeight;
+      prog.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+
+    // Gentle parallax on full-bleed photo backgrounds.
+    const plx = [...document.querySelectorAll<HTMLElement>('.hero__slides, .pagehead__bg, .promise__slides, .cta__bg')];
+    if (!reduce && plx.length) {
+      const run = () => { plx.forEach((el) => { const r = el.parentElement!.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; el.style.translate = `0 ${Math.round((r.top) * -0.12)}px`; }); };
+      addEventListener('scroll', () => requestAnimationFrame(run), { passive: true }); run();
+    }
+
+    // Magnetic hover on primary buttons (desktop pointers only).
+    if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll<HTMLElement>('.btn--accent, .btn--dark').forEach((b) => {
+        b.addEventListener('pointermove', (e) => { const r = b.getBoundingClientRect(); b.style.translate = `${(e.clientX - r.left - r.width / 2) * .12}px ${(e.clientY - r.top - r.height / 2) * .2}px`; });
+        b.addEventListener('pointerleave', () => { b.style.translate = ''; });
+      });
+    }
 
     // Phone dock: shown when the hero buttons and the estimate form are both out of view
     const dock = document.querySelector('[data-dock]');
