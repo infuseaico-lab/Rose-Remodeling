@@ -5,6 +5,8 @@ import { site, services, steps, promises, videos, projects, platforms, reviews, 
 import { slug } from '../data/nav';
 import { serviceHref } from '../data/servicePages';
 const tel = `tel:${site.phoneTel}`;
+// "Find us on" logo strip: hidden for now. Set to true to show it again.
+const showBadges = false;
 ---
 <SiteLayout
   title="Kitchen & Bath Remodeling in Sunnyvale | Rose Remodeling & Design"
@@ -208,6 +210,7 @@ const tel = `tel:${site.phoneTel}`;
       </div>
     </section>
 
+    {showBadges && (
     <section class="badges" aria-labelledby="badges-title">
       <div class="wrap badges__inner">
         <h2 class="badges__title" id="badges-title">Find us on</h2>
@@ -222,6 +225,7 @@ const tel = `tel:${site.phoneTel}`;
         </ul>
       </div>
     </section>
+    )}
 
     <section class="section" id="areas" aria-labelledby="areas-title">
       <div class="wrap">
