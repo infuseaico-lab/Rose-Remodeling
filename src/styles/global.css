@@ -573,3 +573,9 @@ textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--input); bord
 .pagehead .hero__actions { margin-top: 8px; }
 .pagehead__line { display: block; }
 .pagehead--img .pagehead__title { max-width: none; }
+/* service pages: two-column "What's Included" only where the column is wide enough */
+@media (min-width: 56em) and (max-width: 74.99em) { .incl { grid-template-columns: 1fr; } }
+/* service pages: divider line between sections */
+.svcpage > section { position: relative; }
+.svcpage > section + section::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: min(calc(100% - 2 * var(--gutter)), calc(var(--max) - 2 * var(--gutter))); height: 1px; background: #D6C9C6; }
+.svcpage > section + section::after { content: ""; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 56px; height: 6px; border-radius: 3px; background: var(--accent); }
