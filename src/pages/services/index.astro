@@ -10,7 +10,7 @@ import { servicePages } from '../../data/servicePages';
       <ul class="svcs">
         {servicePages.map((s) => (
           <li class="svc" data-reveal>
-            <a href={`/services/${s.slug}/`} tabindex="-1" aria-hidden="true"><img class="svc__img" src={`${s.img}-800.webp`} width="1536" height="1024" alt="" loading="lazy" /></a>
+            <a href={`/services/${s.slug}/`} tabindex="-1" aria-hidden="true"><img class="svc__img" src={`${s.real ?? s.img}-800.webp`} srcset={s.real ? `${s.real}-800.webp 800w, ${s.real}.webp 1600w` : `${s.img}-800.webp 800w, ${s.img}-1536.webp 1536w`} sizes="(min-width: 40em) 50vw, 100vw" width="1536" height="1024" alt="" loading="lazy" /></a>
             <h3 class="h3"><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg></span><a href={`/services/${s.slug}/`} class="svc__title">{s.name}</a></h3>
             <p>{s.blurb}</p>
             <ul class="svc__list">{s.bullets.map((b) => <li>{b}</li>)}</ul>

@@ -58,7 +58,7 @@ const tel = `tel:${site.phoneTel}`;
           {services.map((s, i) => (
             <li class="svc" id={slug(s.name)} data-reveal>
               {s.img
-                ? <img class="svc__img" src={`${s.img}-800.webp`} srcset={`${s.img}-800.webp 800w, ${s.img}-1536.webp 1536w`} sizes="(min-width: 64em) 380px, (min-width: 40em) 50vw, 100vw" width="1536" height="1024" alt={`${s.name}: representative photo`} loading="lazy" />
+                ? <img class="svc__img" src={`${s.real ?? s.img}-800.webp`} srcset={s.real ? `${s.real}-800.webp 800w, ${s.real}.webp 1600w` : `${s.img}-800.webp 800w, ${s.img}-1536.webp 1536w`} sizes="(min-width: 64em) 380px, (min-width: 40em) 50vw, 100vw" width="1536" height="1024" alt={s.real ? `${s.name} by Rose Remodeling & Design` : `${s.name}: representative photo`} loading="lazy" />
                 : <div class={`ph${i % 2 ? ' ph--light' : ''}`} role="img" aria-label={`${s.name} project`}><span><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg>Photo: {s.name}</span></div>}
               <h3 class="h3"><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${s.icon}`}/></svg></span>{s.name}</h3>
               <p>{s.blurb}</p>

@@ -4,7 +4,6 @@
 export type Photo = { src: string; alt: string; width: number; height: number; thumb?: string };
 export type Gallery = { slug: string; title: string; label: string; blurb: string; cover: Photo; photos: Photo[] };
 
-const cover = (slug: string, alt: string): Photo => ({ src: `/img/portfolio/${slug}.webp`, alt, width: 1170, height: 780 });
 
 
 // Kitchen photos from Rose projects (stock photos in the upload were left out). Each has a 1600px file and an -800 thumbnail.
@@ -190,6 +189,67 @@ const exteriorPhotos: Photo[] = exteriorFiles.map(([n, w, h], i) => ({
   alt: `Addition and exterior work by Rose Remodeling & Design, photo ${i + 1}`,
 }));
 
+// Full house remodel photos from Rose projects (the logo and a duplicate were left out).
+const fullHouseFiles: [string, number, number][] = [
+  ['full-house-01', 1170, 780],
+  ['full-house-02', 980, 652],
+  ['full-house-03', 1600, 1067],
+  ['full-house-04', 1600, 1067],
+  ['full-house-05', 1600, 1068],
+  ['full-house-06', 1600, 1068],
+  ['full-house-07', 1600, 1067],
+  ['full-house-08', 1600, 1067],
+  ['full-house-09', 1600, 1068],
+  ['full-house-10', 1600, 1068],
+  ['full-house-11', 1600, 1068],
+  ['full-house-12', 1600, 1068],
+  ['full-house-13', 1600, 1068],
+  ['full-house-14', 1600, 1068],
+  ['full-house-15', 1068, 1600],
+  ['full-house-16', 1600, 1067],
+  ['full-house-17', 1067, 1600],
+  ['full-house-18', 1068, 1600],
+  ['full-house-19', 1068, 1600],
+  ['full-house-20', 1600, 1068],
+  ['full-house-21', 1600, 1068],
+  ['full-house-22', 1600, 1068],
+  ['full-house-23', 1068, 1600],
+  ['full-house-24', 1067, 1600],
+  ['full-house-25', 1067, 1600],
+  ['full-house-26', 1600, 1067],
+  ['full-house-27', 1067, 1600],
+  ['full-house-28', 1600, 1068],
+  ['full-house-29', 1068, 1600],
+  ['full-house-30', 1067, 1600],
+  ['full-house-31', 1068, 1600],
+  ['full-house-32', 1068, 1600],
+  ['full-house-33', 1068, 1600],
+  ['full-house-34', 1068, 1600],
+  ['full-house-35', 1068, 1600],
+  ['full-house-36', 1600, 1068],
+  ['full-house-37', 1067, 1600],
+  ['full-house-38', 1068, 1600],
+  ['full-house-39', 1600, 1068],
+  ['full-house-40', 1068, 1600],
+  ['full-house-41', 1068, 1600],
+  ['full-house-42', 1067, 1600],
+  ['full-house-43', 1068, 1600],
+  ['full-house-44', 1068, 1600],
+  ['full-house-45', 1600, 1067],
+  ['full-house-46', 1600, 1068],
+  ['full-house-47', 1068, 1600],
+  ['full-house-48', 1600, 1067],
+  ['full-house-49', 1068, 1600],
+  ['full-house-50', 1600, 1067],
+  ['full-house-51', 1067, 1600],
+  ['full-house-52', 1600, 1066],
+  ['full-house-53', 1068, 1600],
+];
+const fullHousePhotos: Photo[] = fullHouseFiles.map(([n, w, h], i) => ({
+  src: `/img/portfolio/full-house/${n}.webp`, thumb: `/img/portfolio/full-house/${n}-800.webp`, width: w, height: h,
+  alt: `Full house remodel by Rose Remodeling & Design, photo ${i + 1}`,
+}));
+
 export const galleries: Gallery[] = [
   {
     slug: 'kitchen',
@@ -220,8 +280,8 @@ export const galleries: Gallery[] = [
     title: 'Full House Remodels',
     label: 'Full House Remodel',
     blurb: 'Whole-home transformations, inside and out.',
-    cover: cover('full-home', 'Two-story modern home after a full remodel, with a dark garage door, black windows and a new lawn'),
-    photos: [],
+    cover: { ...fullHousePhotos[0], alt: 'Two-story home after a full remodel, with white stucco, black windows, a dark garage door and a new lawn' },
+    photos: fullHousePhotos.slice(1),
   },
 ];
 
