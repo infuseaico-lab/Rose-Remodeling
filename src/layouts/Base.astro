@@ -69,7 +69,18 @@ const ld = [business, ...schema];
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
-  <script is:inline>document.documentElement.classList.add("js")</script>
+  <script is:inline>
+    document.documentElement.classList.add("js");
+    // Always open pages at the top (unless the link points to a section, e.g. /#estimate).
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    (function () {
+      var toTop = function () { if (!location.hash) { var h = document.documentElement, b = h.style.scrollBehavior; h.style.scrollBehavior = "auto"; window.scrollTo(0, 0); h.style.scrollBehavior = b; } };
+      toTop();
+      document.addEventListener("DOMContentLoaded", toTop);
+      window.addEventListener("load", toTop);
+      window.addEventListener("pageshow", function (e) { if (e.persisted) toTop(); });
+    })();
+  </script>
   <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
 </head>
 <body>
