@@ -171,7 +171,7 @@ const flat = mainNav.flatMap((i) => ('items' in i ? [{ href: i.items[0].href, la
     // Gentle parallax on full-bleed photo backgrounds.
     const plx = [...document.querySelectorAll<HTMLElement>('.hero__slides, .pagehead__bg, .promise__slides, .cta__bg')];
     if (!reduce && plx.length) {
-      const run = () => { plx.forEach((el) => { const r = el.parentElement!.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; el.style.translate = `0 ${Math.round((r.top) * -0.12)}px`; }); };
+      const run = () => { plx.forEach((el) => { const r = el.parentElement!.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; const max = r.height * 0.1; el.style.translate = `0 ${Math.round(Math.max(-max, Math.min(max, r.top * -0.12)))}px`; }); };
       addEventListener('scroll', () => requestAnimationFrame(run), { passive: true }); run();
     }
 

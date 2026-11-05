@@ -727,3 +727,6 @@ details[open] p { animation: faqIn .45s var(--ease); }
 .svc .svc__img, .svc .ph { margin-bottom: 14px; }
 /* CTA band with the button on the right */
 @media (min-width: 56em) { .cta--split .hero__actions { justify-content: flex-end; } }
+/* oversize parallax photos so they never leave a gap */
+.pagehead__bg, .cta__bg { top: -12%; bottom: auto; height: 124%; }
+.cta--img .cta__bg, .pagehead--img .pagehead__bg { top: -12%; bottom: auto; height: 124%; }
