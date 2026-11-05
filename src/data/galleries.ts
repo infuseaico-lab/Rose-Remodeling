@@ -4,7 +4,7 @@
 export type Photo = { src: string; alt: string; width: number; height: number; thumb?: string };
 export type Gallery = { slug: string; title: string; label: string; blurb: string; cover: Photo; photos: Photo[] };
 
-const cover = (slug: string, alt: string): Photo => ({ src: `/img/portfolio/${slug}.webp`, alt, width: 1200, height: 800 });
+const cover = (slug: string, alt: string): Photo => ({ src: `/img/portfolio/${slug}.webp`, alt, width: 1170, height: 780 });
 
 
 // Kitchen photos from Rose projects (stock photos in the upload were left out). Each has a 1600px file and an -800 thumbnail.
@@ -156,6 +156,40 @@ const bathroomPhotos: Photo[] = bathroomFiles.map(([n, w, h], i) => ({
   alt: `Bathroom remodel by Rose Remodeling & Design, photo ${i + 1}`,
 }));
 
+// Addition / exterior photos from Rose projects (stock photos, a duplicate and letterboxed screenshots were left out).
+const exteriorFiles: [string, number, number][] = [
+  ['exterior-01', 1600, 1067],
+  ['exterior-02', 1600, 1067],
+  ['exterior-03', 1600, 1067],
+  ['exterior-04', 1600, 1067],
+  ['exterior-05', 1600, 1071],
+  ['exterior-06', 1600, 1067],
+  ['exterior-07', 1600, 1068],
+  ['exterior-08', 1600, 1067],
+  ['exterior-09', 1600, 1068],
+  ['exterior-10', 1600, 1068],
+  ['exterior-11', 1600, 1067],
+  ['exterior-12', 1600, 1067],
+  ['exterior-13', 1600, 1067],
+  ['exterior-14', 1600, 1067],
+  ['exterior-15', 980, 652],
+  ['exterior-16', 1170, 780],
+  ['exterior-17', 512, 384],
+  ['exterior-18', 426, 320],
+  ['exterior-19', 848, 636],
+  ['exterior-20', 819, 614],
+  ['exterior-21', 800, 800],
+  ['exterior-22', 1600, 1067],
+  ['exterior-23', 1600, 1067],
+  ['exterior-24', 1600, 1068],
+  ['exterior-25', 1600, 1067],
+  ['exterior-26', 1600, 1067],
+];
+const exteriorPhotos: Photo[] = exteriorFiles.map(([n, w, h], i) => ({
+  src: `/img/portfolio/exterior/${n}.webp`, thumb: `/img/portfolio/exterior/${n}-800.webp`, width: w, height: h,
+  alt: `Addition and exterior work by Rose Remodeling & Design, photo ${i + 1}`,
+}));
+
 export const galleries: Gallery[] = [
   {
     slug: 'kitchen',
@@ -178,8 +212,8 @@ export const galleries: Gallery[] = [
     title: 'Additions & Exteriors',
     label: 'Addition / Exterior',
     blurb: 'Room additions, new facades and outdoor living.',
-    cover: cover('addition', 'Modern home with a rear addition, wide glass walls, a wood deck and a lit pool at dusk'),
-    photos: [],
+    cover: { ...exteriorPhotos[0], alt: 'Backyard addition with a modern louvered pergola, outdoor living area and composite deck' },
+    photos: exteriorPhotos.slice(1),
   },
   {
     slug: 'full-house-remodel',
