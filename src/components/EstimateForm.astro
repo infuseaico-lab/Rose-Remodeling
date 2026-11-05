@@ -2,7 +2,7 @@
 import { site, services } from '../data/site';
 interface Props { message?: boolean; id?: string; selected?: string }
 const { id = 'estimate-form', selected } = Astro.props;
-const timelines = ['As soon as possible', 'Within 1–3 months', 'Within 3–6 months', '6+ months from now', 'Just exploring ideas'];
+const timelines = ['ASAP', '1–3 months', '3–6 months', '6+ months', 'Just exploring'];
 ---
 <form id={id} class="estimate-form" method="post" action={site.formAction || undefined} data-email={site.email}>
   <div class="row">
@@ -19,7 +19,7 @@ const timelines = ['As soon as possible', 'Within 1–3 months', 'Within 3–6 m
     </label>
     <label>Project Timeline
       <select name="timeline" required>
-        <option value="" selected disabled>When do you want to start?</option>
+        <option value="" selected disabled>Choose a start</option>
         {timelines.map((t) => <option>{t}</option>)}
       </select>
     </label>
