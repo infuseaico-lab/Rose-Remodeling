@@ -2,7 +2,7 @@ import { services } from './site';
 
 // One page per service at /services/<slug>/. Copy is general on purpose: no prices or timelines
 // we can't stand behind. Add project-specific details here as Rose provides them.
-type Extra = { slug: string; title: string; intro: string; includes: string[]; gallery?: string; head: string };
+type Extra = { slug: string; title: string; intro: string; includes: string[]; gallery?: string; head: string; quoteBg?: string };
 
 const extra: Record<string, Extra> = {
   'Kitchen Remodeling': {
@@ -46,6 +46,7 @@ const extra: Record<string, Extra> = {
   },
   'New Home Construction': {
     slug: 'new-home-construction',
+    quoteBg: '/img/new-home-modern-house-dusk',
     head: '/img/head-new-home',
     title: 'New Home Construction in Sunnyvale & the Bay Area',
     intro: 'Ground-up homes, designed, permitted and built by one team, from the first sketch to the final walkthrough.',

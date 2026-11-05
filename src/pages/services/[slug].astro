@@ -94,7 +94,8 @@ const headImage = realPhotos ? { src: shots[0].src } : s.head.includes('/portfol
 
   </div>
 
-  <section class="section dark cta" id="quote">
+  <section class:list={["section dark cta", { "cta--img": s.quoteBg }]} id="quote">
+    {s.quoteBg && <img class="cta__bg" src={`${s.quoteBg}-1536.webp`} srcset={`${s.quoteBg}-800.webp 800w, ${s.quoteBg}-1536.webp 1536w`} sizes="100vw" width="1536" height="1024" alt="" aria-hidden="true" loading="lazy" decoding="async" />}
     <div class="wrap cta__inner">
       <div class="cta__copy">
         <h2 class="h2">Get a Free {s.name} Estimate</h2>
