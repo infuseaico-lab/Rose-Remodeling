@@ -11,7 +11,7 @@ const photos = allPhotos(g);
 const others = galleries.filter((x) => x.slug !== g.slug);
 ---
 <SiteLayout title={`${g.title} | Photo Gallery | Rose Remodeling & Design`} description={`${g.title} by Rose Remodeling & Design in Sunnyvale and the Bay Area. ${g.blurb}`}>
-  <PageHead title={g.title} intro={g.blurb} crumbs={[{ href: '/', label: 'Home' }, { href: '/portfolio/', label: 'Portfolio' }, { href: '/portfolio/photo-galleries/', label: 'Photo Galleries' }, { label: g.label }]} />
+  <PageHead image={{ src: g.cover.src }} title={g.title} intro={g.blurb} crumbs={[{ href: '/', label: 'Home' }, { href: '/portfolio/', label: 'Portfolio' }, { href: '/portfolio/photo-galleries/', label: 'Photo Galleries' }, { label: g.label }]} />
 
   <section class="section">
     <div class="wrap">
