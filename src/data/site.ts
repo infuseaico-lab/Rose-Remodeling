@@ -45,15 +45,15 @@ export const promises = [
 
 // Vimeo project videos from the current site.
 export const videos = [
-  { id: '1147816134', title: 'Home remodel walkthrough with Adir', place: 'Fremont', length: '1:07' },
-  { id: '1012134954', title: 'Two-bathroom remodel', place: 'Burlingame', length: '0:52' },
-  { id: '1009985487', title: 'Closet & bathroom', place: 'Newark', length: '0:39' },
-  { id: '1012129446', title: 'Two glass doors & front door', place: 'Pleasanton', length: '0:50' },
+  { id: '1147816134', title: 'Rose Remodeling & Design', place: 'Bay Area', length: '1:07' },
+  { id: '1012134954', title: '2 Bathroom Remodel', place: 'Burlingame, CA', length: '0:52' },
+  { id: '1009985487', title: 'Closet & Bathroom', place: 'Newark, CA', length: '0:39' },
+  { id: '1012129446', title: '2 Glass Doors & Front Door', place: 'Pleasanton, CA', length: '0:50' },
 ];
 
 export const projects = [
-  { title: 'Two-bathroom remodel', place: 'Burlingame' },
-  { title: 'Closet & bathroom', place: 'Newark' },
+  { title: '2 Bathroom Remodel', place: 'Burlingame, CA' },
+  { title: 'Closet & Bathroom', place: 'Newark, CA' },
   { title: 'Glass & front doors', place: 'Pleasanton' },
 ];
 

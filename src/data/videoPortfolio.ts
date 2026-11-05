@@ -1,18 +1,27 @@
-// Video portfolio. The first four have known titles; the rest use numbered titles until real ones are provided.
+// Video portfolio, titles and cities as provided by Rose. Order here is the order on the page.
 export type Video = { platform: 'vimeo' | 'youtube'; id: string; title: string; place?: string };
 
-const raw: [Video['platform'], string, string?, string?][] = [
-  ['vimeo', '1147816134', 'Home remodel walkthrough with Adir', 'Fremont'],
-  ['vimeo', '1012134954', 'Two-bathroom remodel', 'Burlingame'],
-  ['vimeo', '1009985487', 'Closet & bathroom', 'Newark'],
-  ['vimeo', '1012129446', 'Two glass doors & front door', 'Pleasanton'],
-  ['vimeo', '1012136222'], ['vimeo', '1012136946'], ['vimeo', '1012129687'], ['vimeo', '1012129916'],
-  ['vimeo', '1018378583'], ['vimeo', '1038298627'], ['vimeo', '1058406182'], ['vimeo', '1075114490'],
-  ['vimeo', '1097618337'], ['vimeo', '1175096030'],
-  ['youtube', 'zckL2Q6Gmwc'], ['youtube', 'Z3DiFeHC1ts'], ['youtube', 'lO2Y9B1ZmKE'],
+const raw: [Video['platform'], string, string, string?][] = [
+  ['vimeo', '1147816134', 'Rose Remodeling & Design'],
+  ['vimeo', '1012134954', '2 Bathroom Remodel', 'Burlingame, CA'],
+  ['vimeo', '1009985487', 'Closet & Bathroom', 'Newark, CA'],
+  ['vimeo', '1012129446', '2 Glass Doors & Front Door', 'Pleasanton, CA'],
+  ['vimeo', '1012136222', 'Bathroom Remodel', 'Union City, CA'],
+  ['vimeo', '1012136946', 'Bathroom Remodel', 'San Jose, CA'],
+  ['vimeo', '1012129687', '2 Bathrooms Remodel', 'San Jose, CA'],
+  ['vimeo', '1012129916', 'Kitchen, Floors & Bathroom', 'San Jose, CA'],
+  ['vimeo', '1018378583', 'Kitchen Remodel', 'Fremont, CA'],
+  ['vimeo', '1038298627', '2 Bathroom Remodel', 'Cupertino, CA'],
+  ['vimeo', '1058406182', '2 Bathrooms Remodel', 'Mountain View, CA'],
+  ['vimeo', '1075114490', 'Kitchen Remodel', 'San Jose, CA'],
+  ['vimeo', '1097618337', 'Kitchen Remodel', 'Foster City, CA'],
+  ['youtube', 'zckL2Q6Gmwc', 'Full Condo Remodel', 'Redwood City, CA'],
+  ['youtube', 'Z3DiFeHC1ts', 'Kitchen Addition + Landscaping', 'Castro Valley, CA'],
+  ['youtube', 'lO2Y9B1ZmKE', 'Master Bathroom Remodel', 'Mountain House, CA'],
+  ['vimeo', '1175096030', 'Full House Remodel', 'Fremont, CA'],
 ];
 
-export const videoPortfolio: Video[] = raw.map(([platform, id, title, place], i) => ({ platform, id, title: title ?? `Project video ${i + 1}`, place }));
+export const videoPortfolio: Video[] = raw.map(([platform, id, title, place]) => ({ platform, id, title, place }));
 
 export const embedUrl = (v: Video) =>
   v.platform === 'vimeo'
