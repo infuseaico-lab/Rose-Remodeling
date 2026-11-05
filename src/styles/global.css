@@ -571,3 +571,5 @@ textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--input); bord
 .pagehead--img .pagehead__title { max-width: 18ch; text-wrap: balance; }
 .pagehead--img .pagehead__intro { color: #E9E3E1; }
 .pagehead .hero__actions { margin-top: 8px; }
+.pagehead__line { display: block; }
+.pagehead--img .pagehead__title { max-width: none; }

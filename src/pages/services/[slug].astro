@@ -20,7 +20,7 @@ const tel = `tel:${site.phoneTel}`;
 const headImage = s.head.includes('/portfolio/') ? { src: `${s.head}.webp` } : { src: `${s.head}-1536.webp`, srcset: `${s.head}-800.webp 800w, ${s.head}-1536.webp 1536w` };
 ---
 <SiteLayout title={`${s.title} | Rose Remodeling & Design`} description={`${s.intro} Licensed, insured and bonded. Free in-home consultation: ${site.phoneDisplay}.`}>
-  <PageHead title={s.title} intro={s.intro} image={headImage} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]}>
+  <PageHead title={s.name} titleSub={s.title.slice(s.name.length + 1)} intro={s.intro} image={headImage} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]}>
     <div class="hero__actions">
       <a class="btn btn--accent btn--lg" href="#quote">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="btn btn--outline btn--lg" href={tel}><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> {site.phoneDisplay}</a>

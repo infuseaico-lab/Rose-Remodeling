@@ -1,7 +1,7 @@
 ---
 // Dark title band for inner pages, with breadcrumb.
-interface Props { title: string; intro?: string; crumbs: { href?: string; label: string }[]; image?: { src: string; srcset?: string } }
-const { title, intro, crumbs, image } = Astro.props;
+interface Props { title: string; intro?: string; crumbs: { href?: string; label: string }[]; image?: { src: string; srcset?: string }; titleSub?: string }
+const { title, intro, crumbs, image, titleSub } = Astro.props;
 ---
 <section class:list={["pagehead", { "pagehead--img": image }]}>
   {image && <img class="pagehead__bg" src={image.src} srcset={image.srcset} sizes={image.srcset ? "100vw" : undefined} alt="" aria-hidden="true" fetchpriority="high" />}
@@ -11,7 +11,7 @@ const { title, intro, crumbs, image } = Astro.props;
         {crumbs.map((c) => <li>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
       </ol>
     </nav>
-    <h1 class="pagehead__title">{title}</h1>
+    <h1 class="pagehead__title">{title}{titleSub && <span class="pagehead__line"> {titleSub}</span>}</h1>
     {intro && <p class="pagehead__intro">{intro}</p>}
     <slot />
   </div>
