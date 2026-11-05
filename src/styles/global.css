@@ -716,3 +716,12 @@ details[open] p { animation: faqIn .45s var(--ease); }
 .faq .facts a, .contact__list a { display: inline-flex; align-items: center; min-height: 44px; }
 .svc__title { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 22.5em) { .platforms { grid-template-columns: 1fr; } .hero__title { font-size: 2rem; } }
+/* service cards: more compact on desktop (still 2 per row) */
+@media (min-width: 64em) {
+  #services .svcs { max-width: 1040px; margin-inline: auto; gap: 18px; }
+  #services .svc .svc__img, #services .svc .ph { aspect-ratio: 21 / 9; }
+  #services .svc p { font-size: .875rem; }
+}
+/* no icon motion; more room between card photo and title */
+.tile, .svc:hover .tile, .perks li:hover .tile, .contact__list li:hover .tile { transform: none !important; transition: none !important; }
+.svc .svc__img, .svc .ph { margin-bottom: 14px; }
