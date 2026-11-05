@@ -1,0 +1,46 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import { site, steps } from '../../data/site';
+const tel = `tel:${site.phoneTel}`;
+const perks = [
+  ['clipboard', 'Free in-home consultation', 'We visit, measure and talk through what you want, at no cost.'],
+  ['layers', 'Clear written proposal', 'A detailed scope and estimate before any work begins.'],
+  ['shield', 'Licensed, insured & bonded', `${site.license}. One design-build team, one contract.`],
+  ['phone', 'Fast follow-up', 'Adir calls you back to answer questions and book your visit.'],
+];
+---
+<SiteLayout title="Free Estimate | Rose Remodeling & Design" description="Request a free remodeling estimate from Rose Remodeling & Design in Sunnyvale and the Bay Area. Free in-home consultation and a clear written proposal.">
+  <PageHead image={{ src: "/img/portfolio/kitchen/kitchen-04.webp" }} title="Get a Free Estimate" intro="Tell us about your project. We’ll call you back to book a free in-home consultation, with no pressure and no obligation." crumbs={[{ href: '/', label: 'Home' }, { label: 'Free Estimate' }]} />
+
+  <section class="section">
+    <div class="wrap contact">
+      <div class="contact__info" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-clipboard"/></svg>What You Get</span>
+        <h2 class="h2">No Cost, No Pressure</h2>
+        <ul class="perks">
+          {perks.map(([icon, title, text]) => (
+            <li><span class="tile"><svg class="ico" aria-hidden="true"><use href={`#i-${icon}`}/></svg></span><span><strong>{title}</strong><small>{text}</small></span></li>
+          ))}
+        </ul>
+        <p class="contact__note">Prefer to talk now? <a href={tel}><strong>{site.phoneDisplay}</strong></a></p>
+      </div>
+      <div class="contact__form" data-reveal>
+        <EstimateForm id="free-estimate-form" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--card">
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <span class="pill"><svg class="ico" aria-hidden="true"><use href="#i-clipboard"/></svg>What Happens Next</span>
+        <h2 class="h2">From Request to Remodel</h2>
+      </header>
+      <ol class="steps">
+        {steps.map((st, i) => <li class="step" data-reveal><span class="step__num" aria-hidden="true">0{i + 1}</span><h3 class="h3">{st.title}</h3><p>{st.text}</p></li>)}
+      </ol>
+    </div>
+  </section>
+</SiteLayout>
