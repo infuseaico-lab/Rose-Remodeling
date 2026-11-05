@@ -738,3 +738,8 @@ details[open] p { animation: faqIn .45s var(--ease); }
   .about__media { display: flex; margin: 0; }
   .about__media img { aspect-ratio: auto; height: 100%; min-height: 420px; object-fit: cover; object-position: 50% 40%; }
 }
+@media (min-width: 56em) {
+  .about__copy { align-content: center; }
+  .about__media { position: relative; min-height: 460px; }
+  .about__media img { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; }
+}
