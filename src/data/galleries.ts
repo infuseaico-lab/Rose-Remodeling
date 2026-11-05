@@ -280,8 +280,8 @@ export const galleries: Gallery[] = [
     title: 'Full House Remodels',
     label: 'Full House Remodel',
     blurb: 'Whole-home transformations, inside and out.',
-    cover: { ...fullHousePhotos[0], alt: 'Two-story home after a full remodel, with white stucco, black windows, a dark garage door and a new lawn' },
-    photos: fullHousePhotos.slice(1),
+    cover: { ...fullHousePhotos[1], alt: 'Modern two-story home after a full remodel, with wood and black siding, a glass garage door and new landscaping' },
+    photos: [fullHousePhotos[0], ...fullHousePhotos.slice(2)],
   },
 ];
 
