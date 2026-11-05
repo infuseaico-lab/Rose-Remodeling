@@ -13,10 +13,12 @@ interface Props {
   preload?: { src: string; srcset?: string; sizes?: string };
   noindex?: boolean;
 }
-const { title, description, image = '/img/og-default.jpg', schema = [], preload, noindex: noindexProp = false } = Astro.props;
+const { title, description, image: imageProp, schema = [], preload, noindex: noindexProp = false } = Astro.props;
 // Preview deploys (NOINDEX=true) are hidden from search engines so they never compete with the real domain.
 const noindex = noindexProp || process.env.NOINDEX === 'true';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Preview deploys share a screenshot of the site (used as the project thumbnail on infusedev.online).
+const image = imageProp ?? (process.env.NOINDEX === 'true' ? '/img/project-thumbnail-og.jpg' : '/img/og-default.jpg');
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(baseUrl + image, Astro.site).href;
 
