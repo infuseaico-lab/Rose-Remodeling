@@ -22,7 +22,7 @@ export const mainNav: Item[] = [
     items: [
       { href: '/portfolio/', label: 'Portfolio Overview', icon: 'layers' },
       { href: '/portfolio/photo-galleries/', label: 'Photo Galleries', icon: 'image' },
-      { href: '/#work', label: 'Project Videos', icon: 'play' },
+      { href: '/portfolio/videos/', label: 'Video Portfolio', icon: 'play' },
     ],
   },
   { href: '/about/', label: 'About Us' },
