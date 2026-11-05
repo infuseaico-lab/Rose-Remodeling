@@ -725,3 +725,5 @@ details[open] p { animation: faqIn .45s var(--ease); }
 /* no icon motion; more room between card photo and title */
 .tile, .svc:hover .tile, .perks li:hover .tile, .contact__list li:hover .tile { transform: none !important; transition: none !important; }
 .svc .svc__img, .svc .ph { margin-bottom: 14px; }
+/* CTA band with the button on the right */
+@media (min-width: 56em) { .cta--split .hero__actions { justify-content: flex-end; } }
