@@ -560,3 +560,14 @@ textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--input); bord
 .shots a:hover img { transform: scale(1.04); }
 .svc__title { text-decoration: none; }
 .svc__title:hover { color: var(--accent); }
+
+/* page header with a photo (service pages) */
+.pagehead--img { min-height: clamp(360px, 52vh, 520px); display: grid; align-items: end; }
+.pagehead--img::before { display: none; }
+.pagehead__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.pagehead--img::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(28 25 26 / .88), rgb(28 25 26 / .6) 50%, rgb(28 25 26 / .2)), linear-gradient(0deg, rgb(28 25 26 / .7), transparent 50%); }
+@media (max-width: 55.99em) { .pagehead--img::after { background: linear-gradient(0deg, rgb(28 25 26 / .92), rgb(28 25 26 / .6) 60%, rgb(28 25 26 / .35)); } }
+.pagehead--img .pagehead__inner { width: 100%; padding-block: clamp(56px, 8vw, 96px) clamp(40px, 6vw, 64px); }
+.pagehead--img .pagehead__title { max-width: 18ch; text-wrap: balance; }
+.pagehead--img .pagehead__intro { color: #E9E3E1; }
+.pagehead .hero__actions { margin-top: 8px; }

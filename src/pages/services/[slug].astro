@@ -13,12 +13,19 @@ const { s } = Astro.props as { s: ServicePage };
 const g = s.gallery ? galleries.find((x) => x.slug === s.gallery) : undefined;
 const shots = g ? allPhotos(g).slice(0, 6) : [];
 const realPhotos = g && g.photos.length > 0;
-const hero = realPhotos ? { src: shots[0].src, alt: shots[0].alt } : { src: `${s.img}-1536.webp`, alt: `${s.name}: representative photo` };
+const hero = realPhotos ? { src: shots[1].src, alt: shots[1].alt } : { src: `${s.img}-1536.webp`, alt: `${s.name}: representative photo` };
 const others = servicePages.filter((x) => x.slug !== s.slug);
 const tel = `tel:${site.phoneTel}`;
+// Header image: real gallery photos are single 1600px files; the others have -800/-1536 sizes.
+const headImage = s.head.includes('/portfolio/') ? { src: `${s.head}.webp` } : { src: `${s.head}-1536.webp`, srcset: `${s.head}-800.webp 800w, ${s.head}-1536.webp 1536w` };
 ---
 <SiteLayout title={`${s.title} | Rose Remodeling & Design`} description={`${s.intro} Licensed, insured and bonded. Free in-home consultation: ${site.phoneDisplay}.`}>
-  <PageHead title={s.title} intro={s.intro} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]} />
+  <PageHead title={s.title} intro={s.intro} image={headImage} crumbs={[{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { label: s.name }]}>
+    <div class="hero__actions">
+      <a class="btn btn--accent btn--lg" href="#quote">Get a Free Estimate <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--outline btn--lg" href={tel}><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> {site.phoneDisplay}</a>
+    </div>
+  </PageHead>
 
   <section class="section">
     <div class="wrap about">
